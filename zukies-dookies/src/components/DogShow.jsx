@@ -25,26 +25,32 @@ class DogShow extends Component {
     getDog() {
         Axios.get(baseUrl + api + 'dogs/' + this.props.match.params.dogId, 
             {withCredentials: true}
-        ).then(res => this.setState({dog: res.data.data}))
+        ).then(res => { if (res.data.status.code === 200) {
+            this.setState({dog: res.data.data})
+        }})
     }
 
     getVax() {
         Axios.get(baseUrl + api + 'vaccines/' + this.props.match.params.dogId,
             {withCredentials: true}
-        ).then(res => this.setState({vaccines: res.data.data}))
+        ).then(res => { if (res.data.status.code === 200) {
+            this.setState({vaccines: res.data.data})
+        }})
     }
     
     getMeds() {
         Axios.get(baseUrl + api + 'medicines/' + this.props.match.params.dogId,
             {withCredentials: true}
-        ).then(res => this.setState({medicines: res.data.data}))
+        ).then(res => { if (res.data.status.code === 200) {
+            this.setState({medicines: res.data.data})
+        }})
     }
 
     render() {
         return (
             <div>
                 <h1>Here is your Dog, {this.props.user.username}</h1>
-                <Dookies />
+                <Dookies dogId={this.state.dog.id}/>
             </div>
         )
     }

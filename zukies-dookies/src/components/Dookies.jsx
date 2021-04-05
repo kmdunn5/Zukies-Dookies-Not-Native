@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 
+let baseUrl = 'http://localhost:5000/'
+let api = 'api/v1/'
+
 class Dookies extends Component {
     constructor(props) {
         super(props)
@@ -14,9 +17,11 @@ class Dookies extends Component {
     }
 
     getDookies() {
-        Axios.get(baseUrl + api + 'dookies/' + this.props.match.params.dogId,
+        Axios.get(baseUrl + api + 'dookies/' + this.props.dogId,
             {withCredentials: true}
-        ).then(res => this.setState({dookies: res.data.data}))
+        ).then(res => { if (res.data.status.code === 200) {
+            this.setState({dookies: res.data.data})
+        }})
     }
 
     render() {
