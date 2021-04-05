@@ -31,7 +31,7 @@ class UserHome extends Component {
     render() {
         return (
             <div>
-                <h1>{this.props.username}</h1>
+                <h1>{this.props.user.username}</h1>
                 <ul>
                     {this.state.dogs.map(dog => {
                         return (

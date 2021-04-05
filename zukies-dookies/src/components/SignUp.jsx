@@ -32,7 +32,7 @@ class SignUp extends Component {
             },
             {withCredentials: true}
         ).then(res => {if (res.data.status.code === 200) {
-            this.props.setUser(res.data.data)
+            this.props.setUser()
             this.props.history.push('/' + res.data.data.id)
         }})
     }

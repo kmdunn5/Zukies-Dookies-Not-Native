@@ -26,7 +26,7 @@ class DogShow extends Component {
     render() {
         return (
             <div>
-                <h1>Here is your Dog, {this.props.role}</h1>            
+                <h1>Here is your Dog, {this.props.role}</h1>      
             </div>
         )
     }
