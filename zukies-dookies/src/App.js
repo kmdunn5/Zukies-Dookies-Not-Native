@@ -4,36 +4,55 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
-import AllDogs from './components/AllDogs'
 import UserHome from './components/UserHome'
-import { Switch, Route } from 'react-router'
+import DogShow from './components/DogShow'
+import { Switch, Route, Redirect } from 'react-router'
+import './App.css'
 
 class App extends Component{
   constructor(props) {
     super(props)
     this.state = {
+      loggedIn: false,
       username: '',
+      caretaker_id: '',
       role: 'lurker'
     }
+    this.setUser = this.setUser.bind(this)
+    this.logOutUser = this.logOutUser.bind(this)
   }
 
   setUser(user) {
     this.setState({
+      loggedIn: true,
       username: user.username,
+      caretaker_id: user.id,
       role: user.role
+    })
+  }
+
+  logOutUser() {
+    this.setState({
+      loggedIn: false,
+      username: '',
+      caretaker_id: '',
+      role: 'lurker'
     })
   }
 
   render() {
     return (
-      <div>
-        <Header />
+      <div className='content'>
+        <Header logOutUser={this.logOutUser}/>
+
+        {!this.state.loggedIn ? <Redirect to='/' /> : null }
+
         <Switch>
           <Route exact path='/' component={ Home } />
           <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} /> } />
           <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} /> } />
-          <Route exact path='/allDogs' component={ AllDogs } />
-          <Route path='/:userId' render={(props) => <UserHome {...props} role={this.state.role} username={this.state.username} />}/>
+          <Route path='/:userId' render={(props) => <UserHome {...props} role={this.state.role} username={this.state.username} caretaker_id={this.state.caretaker_id} />}/>
+          <Route path='/:userId/:dogId' render={(props) => <DogShow {...props} role={this.state.role} />} />
         </Switch>
         <Footer />
       </div>

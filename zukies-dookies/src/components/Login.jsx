@@ -6,7 +6,7 @@ class Login extends Component {
         super(props)
         this.state = {
             username: '',
-            password: '',
+            password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -28,13 +28,15 @@ class Login extends Component {
             },
             {withCredentials: true}
         ).then(res => {if (res.data.status.code === 200) {
-            // set some state that sends you away from this page and creates a state that is the user's role
+            this.props.setUser(res.data.data)
+            this.props.history.push('/' + res.data.data.id)
         }})
     }
 
     render() {
         return (
             <div>
+                <h1>Log In</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="username">Username: </label>
                     <input type="text" name="username" id="username" onChange={this.handleChange} value={this.state.username}/>
