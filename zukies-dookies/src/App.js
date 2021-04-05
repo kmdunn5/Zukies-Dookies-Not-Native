@@ -28,13 +28,13 @@ class App extends Component{
   setUser() {
     Axios.get(baseUrl + api + 'caretakers/', 
       {withCredentials: true}
-    ).then(res => 
+    ).then(res => {if (res.data.id > 0) {
       this.setState({
         user: res.data,
         loggedIn: true,
         role: res.data.role
       })
-    )
+    }})
   }
 
   logOutUser() {

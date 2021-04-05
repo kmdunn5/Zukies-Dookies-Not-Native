@@ -20,13 +20,13 @@ class DogShow extends Component {
     getDog() {
         Axios.get(baseUrl + api + 'dogs/' + this.props.match.params.dogId, 
             {withCredentials: true}
-        ).then(res => console.log(res))
+        ).then(res => this.setState({dog: res.data}))
     }
 
     render() {
         return (
             <div>
-                <h1>Here is your Dog, {this.props.role}</h1>      
+                <h1>Here is your Dog, {this.props.user.username}</h1>
             </div>
         )
     }
