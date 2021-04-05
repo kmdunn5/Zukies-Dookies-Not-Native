@@ -3,8 +3,8 @@ import Axios from 'axios'
 import { Link } from 'react-router-dom'
 // import DataTable from 'react-data-table-component'
 
-let baseUrl = 'http://localhost:5000'
-let api = '/api/v1/'
+let baseUrl = 'http://localhost:5000/'
+let api = 'api/v1/'
 
 class UserHome extends Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class UserHome extends Component {
                 <ul>
                     {this.state.dogs.map(dog => {
                         return (
-                            <li><Link to={`/${this.props.caretaker_id}/${dog.id}`}>{dog.name}</Link></li>       
+                            <li><Link to={`/dog/${dog.id}`}>{dog.name}</Link></li>       
                         )
                     })}
                 </ul>

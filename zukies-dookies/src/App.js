@@ -15,7 +15,6 @@ class App extends Component{
     this.state = {
       loggedIn: false,
       username: '',
-      caretaker_id: '',
       role: 'lurker'
     }
     this.setUser = this.setUser.bind(this)
@@ -26,7 +25,6 @@ class App extends Component{
     this.setState({
       loggedIn: true,
       username: user.username,
-      caretaker_id: user.id,
       role: user.role
     })
   }
@@ -35,7 +33,6 @@ class App extends Component{
     this.setState({
       loggedIn: false,
       username: '',
-      caretaker_id: '',
       role: 'lurker'
     })
   }
@@ -43,7 +40,7 @@ class App extends Component{
   render() {
     return (
       <div className='content'>
-        <Header logOutUser={this.logOutUser}/>
+        <Header logOutUser={this.logOutUser} loggedIn={this.state.loggedIn}/>
 
         {!this.state.loggedIn ? <Redirect to='/' /> : null }
 
@@ -51,8 +48,8 @@ class App extends Component{
           <Route exact path='/' component={ Home } />
           <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} /> } />
           <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} /> } />
-          <Route path='/:userId' render={(props) => <UserHome {...props} role={this.state.role} username={this.state.username} caretaker_id={this.state.caretaker_id} />}/>
-          <Route path='/:userId/:dogId' render={(props) => <DogShow {...props} role={this.state.role} />} />
+          <Route path='/user' render={(props) => <UserHome {...props} role={this.state.role} username={this.state.username} />}/>
+          <Route path='/dog/:dogId' render={(props) => <DogShow {...props} role={this.state.role} />} />
         </Switch>
         <Footer />
       </div>

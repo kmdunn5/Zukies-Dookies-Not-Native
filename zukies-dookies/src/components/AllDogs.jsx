@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 
-let baseUrl = 'http://localhost:5000'
-let api = '/api/v1/'
+let baseUrl = 'http://localhost:5000/'
+let api = 'api/v1/'
 
 class AllDogs extends Component {
     constructor(props) {
