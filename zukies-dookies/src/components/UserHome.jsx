@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import DataTable from 'react-data-table-component'
+import Button from '@material-ui/core/Button'
+
+import AddDog from './AddDog'
 
 let baseUrl = 'http://localhost:5000/'
 let api = 'api/v1/'
@@ -27,8 +30,10 @@ class UserHome extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dogs: []
+            dogs: [],
+            addDog: false
         }
+        this.getUserDogs = this.getUserDogs.bind(this)
     }
 
     componentDidMount() {
@@ -45,8 +50,10 @@ class UserHome extends Component {
         }})
     }
 
-    routeToDog(id) {
-        this.props.history.push('/dog/' + id)
+    toggleAddState() {
+        this.setState({
+            addDog: !this.state.addDog
+        })
     }
 
     render() {
@@ -64,15 +71,14 @@ class UserHome extends Component {
                         this.props.history.push('/dog/' + row.id)
                     }}
                      />
-
-                    
-                {/* <ul>
-                    {this.state.dogs.map(dog => {
-                        return (
-                            <li><Link to={`/dog/${dog.id}`}>{dog.name}</Link></li>       
-                        )
-                    })}
-                </ul> */}
+                {this.state.addDog ? (
+                    <div>
+                        <AddDog getUserDogs={this.getUserDogs}/>
+                        <Button variant='contained' color='primary' onClick={() => this.toggleAddState()}>Cancel</Button>
+                    </div>
+                ) : (
+                    <Button variant='contained' color='primary' onClick={() => this.toggleAddState()}>Time To Add a New Dog!</Button>
+                )}
             </div>
         )
     }
