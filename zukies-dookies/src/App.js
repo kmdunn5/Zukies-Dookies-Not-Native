@@ -56,8 +56,8 @@ class App extends Component{
           <Route exact path='/' component={ Home } />
           <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} /> } />
           <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} /> } />
-          <Route path='/user' render={(props) => <UserHome {...props} user={this.state.user} />}/>
-          <Route path='/dog/:dogId' render={(props) => <DogShow {...props} user={this.state.user} />} />
+          <Route exact path='/user' render={(props) => <UserHome {...props} user={this.state.user} />}/>
+          <Route exact path='/dog/:dogId' render={(props) => <DogShow {...props} user={this.state.user} />} />
         </Switch>
         <Footer />
       </div>

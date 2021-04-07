@@ -53,7 +53,7 @@ class SignUp extends Component {
                         <p>Are you an Owner or a caretaker?</p>
                         <input type="radio" name="role" id="role-owner" value="owner" onChange={this.handleChange}/>
                         <label htmlFor="role-owner">Owner</label>
-                        <input type="radio" name="role" id="role-caretaker" value="owner" onChange={this.handleChange}/>
+                        <input type="radio" name="role" id="role-caretaker" value="caretaker" onChange={this.handleChange}/>
                         <label htmlFor="role-owner">Caretaker/Walker/Friend</label>
                     </div>
                     <input type="submit" value="Log In"/>
