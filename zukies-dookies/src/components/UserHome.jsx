@@ -74,10 +74,10 @@ class UserHome extends Component {
                 {this.state.addDog ? (
                     <div>
                         <AddDog getUserDogs={this.getUserDogs}/>
-                        <Button variant='contained' color='primary' onClick={() => this.toggleAddState()}>Cancel</Button>
+                        <Button size='small' variant='contained' color='primary' onClick={() => this.toggleAddState()}>Cancel</Button>
                     </div>
                 ) : (
-                    <Button variant='contained' color='primary' onClick={() => this.toggleAddState()}>Time To Add a New Dog!</Button>
+                    <Button size='small' variant='contained' color='primary' onClick={() => this.toggleAddState()}>Time To Add a New Dog!</Button>
                 )}
             </div>
         )

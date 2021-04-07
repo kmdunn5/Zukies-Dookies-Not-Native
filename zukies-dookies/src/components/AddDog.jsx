@@ -35,7 +35,6 @@ class AddDog extends Component {
             breed: this.state.breed,
             // image: this.state.image,
             notes: this.state.notes
-
         },
             {withCredentials: true}
         ).then(res => {if (res.data.status.code === 201) {
@@ -50,6 +49,7 @@ class AddDog extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="name">Name: </label>
                     <input type="text" name="name" id="name" onChange={this.handleChange} value={this.state.name}/>
+                    <label htmlFor="birthday">Birthday: </label>
                     <input type="date" name="birthday" id="birthday" onChange={this.handleChange} value={this.state.birthday} min="2000-01-01" max="2100-12-31"/>
                     <label htmlFor="breed">Breed: </label>
                     <input type="text" name="breed" id="breed" onChange={this.handleChange} value={this.state.breed}/>

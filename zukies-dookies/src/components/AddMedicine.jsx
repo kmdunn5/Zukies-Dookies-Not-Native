@@ -8,14 +8,12 @@ class AddMedicine extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
-            birthday: '',
-            breed: '',
-            image: '',
-            notes: '', 
+            medName: '',
+            medRecentDate: '',
+            medFrequency: ''
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleAddMed = this.handleAddMed.bind(this)
     }
 
     handleChange(e) {
@@ -24,21 +22,19 @@ class AddMedicine extends Component {
         })
     }
 
-    handleSubmit(e) {
+    handleAddMed(e) {
         e.preventDefault()
 
-        Axios.post(baseUrl + api + 'dogs/', 
+        Axios.post(baseUrl + api + 'medicines/' + this.props.dog.id,
         {
-            name: this.state.name,
-            birthday: this.state.birthday,
-            breed: this.state.breed,
-            // image: this.state.image,
-            notes: this.state.notes
-
+            medicine_name: this.state.medName,
+            most_recent_date: this.state.medRecentDate,
+            frequency: this.state.medFrequency
         },
             {withCredentials: true}
         ).then(res => {if (res.data.status.code === 201) {
-            this.props.getUserDogs()
+            this.props.getMeds()
+            this.props.showMedsForm()
             }
         })
     }
@@ -46,15 +42,14 @@ class AddMedicine extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleAddMed}>
                     <label htmlFor="name">Name: </label>
-                    <input type="text" name="name" id="name" onChange={this.handleChange} value={this.state.name}/>
-                    <input type="date" name="birthday" id="birthday" onChange={this.handleChange} value={this.state.birthday} min="2000-01-01" max="2100-12-31"/>
-                    <label htmlFor="breed">Breed: </label>
-                    <input type="text" name="breed" id="breed" onChange={this.handleChange} value={this.state.breed}/>
-                    <label htmlFor="notes">Notes: </label>
-                    <textarea name="notes" id="notes" onChange={this.handleChange} value={this.state.notes}/>
-                    <input type="submit" value="Add Dog"/>
+                    <input type="text" name="name" id="medName" onChange={this.handleChange} value={this.state.medName}/>
+                    <label htmlFor="medRecentDate">Most Recent Date Taken: </label>
+                    <input type="date" name="most_recent_date" id="medRecentDate" onChange={this.handleChange} value={this.state.medRecentDate} min="2010-01-01" max="2100-12-31"/>
+                    <label htmlFor="medFrequency">Frequency: </label>
+                    <input type="text" name="frequency" id="medFrequency" onChange={this.handleChange} value={this.state.medFrequency}/>
+                    <input type="submit" value="Add Medicine"/>
                 </form>
             </div>
         )

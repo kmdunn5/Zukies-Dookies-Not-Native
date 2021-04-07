@@ -3,8 +3,8 @@ import Axios from 'axios'
 
 let baseUrl = 'http://localhost:5000/'
 let api = 'api/v1/'
-let path = window.location.pathname
-let pathSplit = path.split('/')
+// let path = window.location.pathname
+// let pathSplit = path.split('/')
 
 class AddDookie extends Component {
     constructor(props) {
@@ -43,7 +43,7 @@ class AddDookie extends Component {
 
     addDookie(e) {
         e.preventDefault()
-        Axios.post(baseUrl + api + 'dookies/' + pathSplit[pathSplit.length - 1], 
+        Axios.post(baseUrl + api + 'dookies/' + this.props.dog.id, 
             {
             abnormal: this.state.abnormal,
             food: this.state.food,

@@ -8,14 +8,11 @@ class AddVaccine extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
-            birthday: '',
-            breed: '',
-            image: '',
-            notes: '', 
+            vaxName: '',
+            vaxDate: '' 
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleAddVax = this.handleAddVax.bind(this)
     }
 
     handleChange(e) {
@@ -24,21 +21,18 @@ class AddVaccine extends Component {
         })
     }
 
-    handleSubmit(e) {
+    handleAddVax(e) {
         e.preventDefault()
 
-        Axios.post(baseUrl + api + 'dogs/', 
+        Axios.post(baseUrl + api + 'vaccines/' + this.props.dog.id,
         {
-            name: this.state.name,
-            birthday: this.state.birthday,
-            breed: this.state.breed,
-            // image: this.state.image,
-            notes: this.state.notes
-
+            vaccine_name: this.state.vaxName,
+            date_taken: this.state.vaxDate
         },
             {withCredentials: true}
         ).then(res => {if (res.data.status.code === 201) {
-            this.props.getUserDogs()
+            this.props.getVax()
+            this.props.showVaxForm()
             }
         })
     }
@@ -46,15 +40,12 @@ class AddVaccine extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleAddVax}>
                     <label htmlFor="name">Name: </label>
-                    <input type="text" name="name" id="name" onChange={this.handleChange} value={this.state.name}/>
-                    <input type="date" name="birthday" id="birthday" onChange={this.handleChange} value={this.state.birthday} min="2000-01-01" max="2100-12-31"/>
-                    <label htmlFor="breed">Breed: </label>
-                    <input type="text" name="breed" id="breed" onChange={this.handleChange} value={this.state.breed}/>
-                    <label htmlFor="notes">Notes: </label>
-                    <textarea name="notes" id="notes" onChange={this.handleChange} value={this.state.notes}/>
-                    <input type="submit" value="Add Dog"/>
+                    <input type="text" name="name" id="vaxName" onChange={this.handleChange} value={this.state.vaxName}/>
+                    <label htmlFor="vaxDate">Date Given: </label>
+                    <input type="date" name="date_taken" id="vaxDate" onChange={this.handleChange} value={this.state.vaxDate} min="2010-01-01" max="2100-12-31"/>
+                    <input type="submit" value="Add Vaccine"/>
                 </form>
             </div>
         )

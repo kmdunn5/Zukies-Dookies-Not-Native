@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 // import DataTable from 'react-data-table-component'
 import Dookies from './Dookies'
+import Button from '@material-ui/core/Button'
+import AddVaccine from './AddVaccine'
+import AddMedicine from './AddMedicine'
 
 const vaxColumns = [
     {
@@ -45,19 +48,25 @@ class DogShow extends Component {
             mountDookies: false,
             mountMeds: false,
             mountVax: false,
+            vaxButtonClicked: false,
+            medsButtonClicked: false,
             vaccines: '',
             medicines: '',
             dogName: '',
             dogBirthday: '',
             dogBreed: '',
             dogImage: '',
-            dogNotes: '', 
+            dogNotes: '',
             vaxName: '',
             vaxDate: '',
             medName: '',
             medRecentDate: '',
             medfrequency: ''
         }
+        this.showVaxForm = this.showVaxForm.bind(this)
+        this.getVax = this.getVax.bind(this)
+        this.showMedsForm = this.showMedsForm.bind(this)
+        this.getMeds = this.getMeds.bind(this)
     }
 
     componentDidMount() {
@@ -110,21 +119,6 @@ class DogShow extends Component {
         })
     }
 
-    handleAddVax(e) {
-        e.preventDefault()
-
-        Axios.post(baseUrl + api + 'vaccines/' + this.state.dog.id, 
-        {
-            vaccine_name: this.state.vaxName,
-            date_taken: this.state.vaxDate
-        },
-            {withCredentials: true}
-        ).then(res => {if (res.data.status.code === 201) {
-            this.getVax()
-            }
-        })
-    }
-
     handleAddMed(e) {
         e.preventDefault()
 
@@ -158,19 +152,17 @@ class DogShow extends Component {
     }
 
     showVaxForm() {
-
+        this.setState({
+            mountVax: !this.state.mountVax,
+            vaxButtonClicked: !this.state.vaxButtonClicked
+        })
     }
 
-    updateVax(e) {
-        e.preventDefault()
-
-        Axios.put(baseUrl + api + 'vaccines/' + this.state.dog.id)
-    }
-
-    updateMed(e) {
-        e.preventDefault()
-
-        Axios.put(baseUrl + api + 'medicines/' + this.state.dog.id)
+    showMedsForm() {
+        this.setState({
+            mountMeds: !this.state.mountMeds,
+            medsButtonClicked: !this.state.medsButtonClicked
+        })
     }
 
     deleteVax(e) {
@@ -189,6 +181,7 @@ class DogShow extends Component {
         return (
             <div>
                 <h1>Here is your Dog, {this.props.user.username}</h1>
+                {/* maybe an update toggle here? */}
                 <img src={this.state.dog.image} alt={this.state.dog.name}/>
                 <h2>{this.state.dog.name}</h2>
                 <h4>{this.state.dog.breed}</h4>
@@ -199,6 +192,13 @@ class DogShow extends Component {
                 ) : ( null )}
                 <div className='vaccine-table'>
                     <h3>Vaccines</h3>
+                    {this.state.vaxButtonClicked ? (
+                        <div>
+                            <AddVaccine getVax={this.getVax} showVaxForm={this.showVaxForm} dog={this.state.dog}/>
+                            <Button size='small' variant='outlined' onClick={() => this.showVaxForm()}>Cancel</Button>
+                        </div>
+                    ) : (
+                        <Button size='small' variant='outlined' onClick={() => this.showVaxForm()}>Add A Vaccine</Button>)}
                     {this.state.mountVax ? (
                         <div>
                             <p>Vax Table</p>
@@ -207,6 +207,13 @@ class DogShow extends Component {
                 </div>
                 <div className='meds-table'>
                     <h3>Medicines</h3>
+                    {this.state.medsButtonClicked ? (
+                        <div>
+                            <AddMedicine getMeds={this.getMeds} showMedsForm={this.showMedsForm} dog={this.state.dog}/>
+                            <Button size='small' variant='outlined' onClick={() => this.showMedsForm()}>Cancel</Button>
+                        </div>
+                    ) : (
+                        <Button size='small' variant='outlined' onClick={() => this.showMedsForm()}>Add A Medicine</Button>)}
                     {this.state.mountMeds ? (
                         <div>
                             <p>Meds Table</p>

@@ -21,6 +21,30 @@ const columns = [
     }
 ]
 
+const ExpandedRow = ({data}) => { return (
+    <table>
+        <thead>
+            <tr>
+                <th>Color</th>
+                <th>Shape</th>
+                <th>Consistency</th>
+                <th>Size</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{data.color}</td>
+                <td>{data.shape}</td>
+                <td>{data.consistency}</td>
+                <td>{data.size}</td>
+                <td>{data.content}</td>
+            </tr>
+        </tbody>
+    </table>
+)}
+
+
 let baseUrl = 'http://localhost:5000/'
 let api = 'api/v1/'
 
@@ -71,7 +95,7 @@ class Dookies extends Component {
                 {this.state.addForm ? (
                 <div> 
                     <button onClick={this.renderAddForm}>Nevermind...</button>
-                    <AddDookie renderAddForm={this.renderAddForm}/>
+                    <AddDookie renderAddForm={this.renderAddForm} dog={this.props.dog}/>
                 </div>
                 ) : (
                     <button onClick={this.renderAddForm}>{this.props.dog.name} Pooped!</button>
@@ -82,6 +106,8 @@ class Dookies extends Component {
                     data={this.state.dookies}
                     striped={true}
                     pagination
+                    expandableRows={true}
+                    expandableRowsComponent={<ExpandedRow />}
                 />
             </div>
         )
