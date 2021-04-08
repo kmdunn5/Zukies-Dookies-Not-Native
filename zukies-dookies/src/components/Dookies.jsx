@@ -3,6 +3,17 @@ import Axios from 'axios'
 import DataTable from 'react-data-table-component'
 import AddDookie from './AddDookie'
 
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+
+
 const columns = [
     {
         name: 'Date',
@@ -28,26 +39,26 @@ const columns = [
 ]
 
 const ExpandedRow = ({data}) => { return (
-    <table>
-        <thead>
-            <tr>
-                <th>Color</th>
-                <th>Shape</th>
-                <th>Consistency</th>
-                <th>Size</th>
-                <th>Content</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{data.color}</td>
-                <td>{data.shape}</td>
-                <td>{data.consistency}</td>
-                <td>{data.size}</td>
-                <td>{data.content}</td>
-            </tr>
-        </tbody>
-    </table>
+    <Table>
+        <TableHead>
+            <TableRow>
+                <TableCell variant='th'>Color</TableCell>
+                <TableCell variant='th'>Shape</TableCell>
+                <TableCell variant='th'>Consistency</TableCell>
+                <TableCell variant='th'>Size</TableCell>
+                <TableCell variant='th'>Content</TableCell>
+            </TableRow>
+        </TableHead>
+        <TableBody>
+            <TableRow>
+                <TableCell>{data.color}</TableCell>
+                <TableCell>{data.shape}</TableCell>
+                <TableCell>{data.consistency}</TableCell>
+                <TableCell>{data.size}</TableCell>
+                <TableCell>{data.content}</TableCell>
+            </TableRow>
+        </TableBody>
+    </Table>
 )}
 
 
