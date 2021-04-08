@@ -7,11 +7,17 @@ const columns = [
     {
         name: 'Date',
         selector: 'created_date',
+        format: row => {
+                let date = row.created_date
+                let dateSplit = date.split('00')
+                return dateSplit[0]
+            },
         sortable: true
     },
     {
         name: 'Abnormal',
         selector: 'abnormal',
+        format: row => {return row.abnormal ? ('yes'):('no')},
         sortable: true
     },
     {
