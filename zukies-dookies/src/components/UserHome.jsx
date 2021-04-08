@@ -17,6 +17,14 @@ const columns = [
     {
         name: 'Birthday',
         selector: 'birthday',
+        format: row => {
+            let date = row.birthday.split('00')
+            let dateNoDay = date[0].split(' ')
+            dateNoDay.splice(0, 1)
+            let newDate = dateNoDay.join(' ')
+            return newDate
+            
+        },
         sortable: true
     },
     {

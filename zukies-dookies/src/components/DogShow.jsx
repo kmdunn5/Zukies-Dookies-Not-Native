@@ -6,36 +6,36 @@ import Button from '@material-ui/core/Button'
 import AddVaccine from './AddVaccine'
 import AddMedicine from './AddMedicine'
 
-const vaxColumns = [
-    {
-        name: 'Name',
-        selector: 'vaccine_name',
-        sortable: true
-    },
-    {
-        name: 'Date Taken',
-        selector: 'date_taken',
-        sortable: true
-    }
-]
+// const vaxColumns = [
+//     {
+//         name: 'Name',
+//         selector: 'vaccine_name',
+//         sortable: true
+//     },
+//     {
+//         name: 'Date Taken',
+//         selector: 'date_taken',
+//         sortable: true
+//     }
+// ]
 
-const medsColumns = [
-    {
-        name: 'Name',
-        selector: 'medicine_name',
-        sortable: true
-    },
-    {
-        name: 'Most Recent Date Taken',
-        selector: 'most_recent_date',
-        sortable: true
-    },
-    {
-        name: 'Frequency',
-        selector: 'frequency',
-        sortable: true
-    }
-]
+// const medsColumns = [
+//     {
+//         name: 'Name',
+//         selector: 'medicine_name',
+//         sortable: true
+//     },
+//     {
+//         name: 'Most Recent Date Taken',
+//         selector: 'most_recent_date',
+//         sortable: true
+//     },
+//     {
+//         name: 'Frequency',
+//         selector: 'frequency',
+//         sortable: true
+//     }
+// ]
 
 let baseUrl = 'http://localhost:5000/'
 let api = 'api/v1/'
