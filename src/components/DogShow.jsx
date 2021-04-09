@@ -4,6 +4,7 @@ import Axios from 'axios'
 import Dookies from './Dookies'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
+import DataTable from 'react-data-table-component'
 
 import AddVaccine from './AddVaccine'
 import AddMedicine from './AddMedicine'
@@ -20,36 +21,50 @@ const randomPhoto = () => {
     return photos[randomNum]
 }
 
-// const vaxColumns = [
-//     {
-//         name: 'Name',
-//         selector: 'vaccine_name',
-//         sortable: true
-//     },
-//     {
-//         name: 'Date Taken',
-//         selector: 'date_taken',
-//         sortable: true
-//     }
-// ]
+const vaxColumns = [
+    {
+        name: 'Name',
+        selector: 'vaccine_name',
+        sortable: true
+    },
+    {
+        name: 'Date Taken',
+        selector: 'date_taken',
+        format: row => {
+            let date = row.date_taken.split('00')
+            let dateNoDay = date[0].split(' ')
+            dateNoDay.splice(0, 1)
+            let newDate = dateNoDay.join(' ')
+            return newDate
+        },
+        sortable: true
+    }
+]
 
-// const medsColumns = [
-//     {
-//         name: 'Name',
-//         selector: 'medicine_name',
-//         sortable: true
-//     },
-//     {
-//         name: 'Most Recent Date Taken',
-//         selector: 'most_recent_date',
-//         sortable: true
-//     },
-//     {
-//         name: 'Frequency',
-//         selector: 'frequency',
-//         sortable: true
-//     }
-// ]
+const medsColumns = [
+    {
+        name: 'Name',
+        selector: 'medicine_name',
+        sortable: true
+    },
+    {
+        name: 'Most Recent Date Taken',
+        selector: 'most_recent_date',
+        format: row => {
+            let date = row.most_recent_date.split('00')
+            let dateNoDay = date[0].split(' ')
+            dateNoDay.splice(0, 1)
+            let newDate = dateNoDay.join(' ')
+            return newDate
+        },
+        sortable: true
+    },
+    {
+        name: 'Frequency',
+        selector: 'frequency',
+        sortable: true
+    }
+]
 
 let baseUrl = 'http://localhost:5000/'
 let api = 'api/v1/'
@@ -230,7 +245,14 @@ class DogShow extends Component {
                                 <Button size='small' variant='outlined' onClick={() => this.showVaxForm()}>Add A Vaccine</Button>)}
                             {this.state.mountVax ? (
                                 <div>
-                                    <p>Vax Table</p>
+                                    {/* <p>Vax Table</p> */}
+                                    <DataTable 
+                                        title="Choose your dog!"
+                                        columns={vaxColumns}
+                                        data={this.state.vaccines}
+                                        responsive={true}
+                                        striped={true}
+                                    />
                                 </div>
                             ) : ( null )}
                         </div>
@@ -246,7 +268,14 @@ class DogShow extends Component {
                                 <Button size='small' variant='outlined' onClick={() => this.showMedsForm()}>Add A Medicine</Button>)}
                             {this.state.mountMeds ? (
                                 <div>
-                                    <p>Meds Table</p>
+                                    {/* <p>Meds Table</p> */}
+                                    <DataTable 
+                                        title="Choose your dog!"
+                                        columns={medsColumns}
+                                        data={this.state.medicines}
+                                        responsive={true}
+                                        striped={true}
+                                    />
                                 </div>
                             ) : ( null )}
                         </div>

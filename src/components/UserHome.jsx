@@ -23,7 +23,6 @@ const columns = [
             dateNoDay.splice(0, 1)
             let newDate = dateNoDay.join(' ')
             return newDate
-            
         },
         sortable: true
     },
