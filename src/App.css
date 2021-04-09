@@ -1,5 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+/* font-family: 'Nunito', sans-serif; */
+
+:root {
+  --orange-web: #ffa400ff;
+  --carolina-blue: #009ffdff;
+  --st-patricks-blue: #2a2a72ff;
+  --raisin-black: #232528ff;
+  --white: #ffffffff;
+  --fire-opal: #eb5e55ff;
+  --aquamarine: #90ffdcff;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: var(--st-patricks-blue);
+  text-align: center;
+}
+
+.main {
+  min-height: 100vh;
+  position: relative;
+}
+
+.content-wrap {
+  padding-bottom: 2.5em;
+}
+
 footer {
+  position: absolute;
+  bottom: 0;
+  height: 2.5em;
+  width: 100%;
+}
+
+h1 {
+  color: var(--orange-web);
+}
+
+a {
+  text-decoration: none;
+}
+
+.content {
   display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.dog-content {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.medical {
+  justify-content: space-around;
+}
+
+/* .dog-data {
+  position: absolute;
+  right: 30%;
+  top: 25%;
+} */
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  color: var(--orange-web);
+  align-items: center;
+}
+
+.dookies-div {
+  display: inline-block;
+}
+
+.home-page {
+  width: fit-content;
+}
+
+.user-home {
+  width: fit-content;
+}
+
+.login-info {
+  width: fit-content;
+  display: flex;
+  align-content: flex-end;
+  /* position: absolute;
+  right: 0; */
+}
+
+img {
+  max-width: 30%;
+  height: auto;
+}
+
+.table {
+  width: 100%;
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: var(--st-patricks-blue);
+  padding: 0;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: 0;
+}
+
+#table-data,
+#header-item {
+  flex: 1 1 20%;
+  text-align: center;
+}
+
+#table-data {
+  font-family: "Nunito", sans-serif;
+}
+
+#header-item {
+  text-transform: uppercase;
+  color: var(--orange-web);
+  font-family: "Nunito", sans-serif;
+}
+
+.error {
+  color: #e71d36ff;
 }

@@ -1,6 +1,23 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
+import AppBar from '@material-ui/core/AppBar'
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles'
+
+const useStyles = theme => ({
+    button: {
+      color: '#ffffffff',
+      'font-weight': 600
+    },
+    appBar: {
+        'background-color': '#2a2a72ff',
+        'min-height': '60px',
+        'flex-direction': 'column',
+        // 'align-items': 'center'
+    }
+});
+
 
 let baseUrl = 'http://localhost:5000'
 let api = '/api/v1/'
@@ -19,23 +36,35 @@ class Header extends Component {
     }})}
     
     render() {
+        const { classes } = this.props;
+
         return (
-            <nav>
-                <Link to='/'><button>Zukies Dookies</button></Link>
-                {this.props.loggedIn ? (
-                <div>
-                    <Link to='/user'><button>Home</button></Link>
-                    <button onClick={this.logOut}>Log Out</button>
+            <AppBar position='static' className={classes.appBar}>
+                {/* <div className='logo'>Zukies Dookies</div> */}
+                <div className='nav-buttons'>
+                    <div className='home-page'>
+                        <Link to='/'><Button className={classes.button}>Zukies Dookies</Button></Link>
+                    </div>
+                    {this.props.loggedIn ? (
+                    <div>
+                        <div className='user-home'>
+                            <Link to='/user'><Button className={classes.button}>Home</Button></Link>
+                        </div>
+                        <div className='login-info'>
+                            <Button className={classes.button} onClick={this.logOut}>Log Out</Button>
+                        </div>
+                    </div>
+                    ) : (
+                    <div className='login-info'>
+                        <Link to='/login'><Button className={classes.button}>Login</Button></Link>
+                        <Link to='/signup'><Button className={classes.button}>Sign Up</Button></Link>
+                    </div>
+                    )}
                 </div>
-                ) : (
-                <div>
-                    <Link to='/login'><button>Login</button></Link>
-                    <Link to='/signup'><button>Sign Up</button></Link>
-                </div>
-                )}
-            </nav>
+            </AppBar >
         )
     }
 }
 
-export default Header
+export default withStyles(useStyles)(Header)
+// export default Header

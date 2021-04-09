@@ -67,9 +67,9 @@ class UserHome extends Component {
     render() {
         return (
             <div>
-                <h1>{this.props.user.username}</h1>
+                <h1>Welcome, {this.props.user.username}! Glad to have you here. </h1>
                 <DataTable 
-                    title={`${this.props.user.username}'s Dogs`}
+                    title="Choose your dog!"
                     columns={columns}
                     data={this.state.dogs}
                     keyField={'id'}

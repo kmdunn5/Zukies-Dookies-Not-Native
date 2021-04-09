@@ -1,5 +1,18 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import { withStyles } from '@material-ui/core/Styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
+const useStyles = theme => ({
+    textField: {
+        'border-color': '#009ffdff',
+    },
+    submit: {
+        'background-color': '#2a2a72ff',
+        'margin-top': 20
+    }
+})
 
 class SignUp extends Component {
     constructor(props) {
@@ -22,6 +35,7 @@ class SignUp extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
+        console.log('clicked submit')
 
         Axios.post('http://localhost:5000/api/v1/caretakers/register',
             {
@@ -38,29 +52,81 @@ class SignUp extends Component {
     }
 
     render() {
+        const { classes } = this.props
+
         return (
             <div>
                 <h1>Sign Up!</h1>
 
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">Username: </label>
+                <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        className={classes.textField}
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
+                        autoFocus
+                        defaultValue={this.state.username}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        className={classes.textField}
+                        name="email"
+                        label="Email"
+                        type="email"
+                        id="email"
+                        defaultValue={this.state.email}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        className={classes.textField}
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        defaultValue={this.state.username}
+                        onChange={this.handleChange}
+                    />
+                    {/* <label htmlFor="username">Username: </label>
                     <input type="text" name="username" id="username" onChange={this.handleChange} value={this.state.username}/>
                     <label htmlFor="email">Email: </label>
                     <input type="email" name="email" id="email" onChange={this.handleChange} value={this.state.email}/>
                     <label htmlFor="password">Password: </label>
-                    <input type="password" name="password" id="password" onChange={this.handleChange} value={this.state.password}/>
+                    <input type="password" name="password" id="password" onChange={this.handleChange} value={this.state.password}/> */}
                     <div>
-                        <p>Are you an Owner or a caretaker?</p>
+                        <p>I am a dog... (select one)</p>
                         <input type="radio" name="role" id="role-owner" value="owner" onChange={this.handleChange}/>
                         <label htmlFor="role-owner">Owner</label>
                         <input type="radio" name="role" id="role-caretaker" value="caretaker" onChange={this.handleChange}/>
-                        <label htmlFor="role-owner">Caretaker/Walker/Friend</label>
+                        <label htmlFor="role-caretaker">Caretaker/Walker/Friend</label>
                     </div>
-                    <input type="submit" value="Log In"/>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Sign Up
+                    </Button>
+                    {/* <input type="submit" value="Log In"/> */}
                 </form>
             </div>
         )
     }
 }
 
-export default SignUp
+export default withStyles(useStyles)(SignUp)

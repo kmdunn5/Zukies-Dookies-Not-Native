@@ -3,7 +3,7 @@ import Axios from 'axios'
 import DataTable from 'react-data-table-component'
 import AddDookie from './AddDookie'
 
-// import { makeStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,7 +12,30 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 // import Paper from '@material-ui/core/Paper';
 
-
+const customStyles = {
+    // table: {
+    //     style: {
+    //         fontFamily: "Nunito",
+    //     }
+    // },
+    // rows: {
+    //   style: {
+    //     minHeight: '72px', // override the row height
+    //   }
+    // },
+    // headCells: {
+    //   style: {
+    //     paddingLeft: '8px', // override the cell padding for head cells
+    //     paddingRight: '8px',
+    //   },
+    // },
+    cells: {
+      style: {
+        paddingLeft: '8px', // override the cell padding for data cells
+        paddingRight: '8px',
+      },
+    },
+  };
 
 const columns = [
     {
@@ -39,23 +62,23 @@ const columns = [
 ]
 
 const ExpandedRow = ({data}) => { return (
-    <Table>
-        <TableHead>
-            <TableRow>
-                <TableCell variant='th'>Color</TableCell>
-                <TableCell variant='th'>Shape</TableCell>
-                <TableCell variant='th'>Consistency</TableCell>
-                <TableCell variant='th'>Size</TableCell>
-                <TableCell variant='th'>Content</TableCell>
+    <Table className='table' id='table'>
+        <TableHead className='table-header'>
+            <TableRow className='table-row'>
+                <TableCell id='header-item'>Color</TableCell>
+                <TableCell id='header-item'>Shape</TableCell>
+                <TableCell id='header-item'>Consistency</TableCell>
+                <TableCell id='header-item'>Size</TableCell>
+                <TableCell id='header-item'>Content</TableCell>
             </TableRow>
         </TableHead>
         <TableBody>
-            <TableRow>
-                <TableCell>{data.color}</TableCell>
-                <TableCell>{data.shape}</TableCell>
-                <TableCell>{data.consistency}</TableCell>
-                <TableCell>{data.size}</TableCell>
-                <TableCell>{data.content}</TableCell>
+            <TableRow className='table-row'>
+                <TableCell className='table-data' id='table-data'>{data.color}</TableCell>
+                <TableCell className='table-data' id='table-data'>{data.shape}</TableCell>
+                <TableCell className='table-data' id='table-data'>{data.consistency}</TableCell>
+                <TableCell className='table-data' id='table-data'>{data.size}</TableCell>
+                <TableCell className='table-data' id='table-data'>{data.content}</TableCell>
             </TableRow>
         </TableBody>
     </Table>
@@ -106,6 +129,7 @@ class Dookies extends Component {
     }
 
     render() {
+        // const { classes } = this.props;
         return (
             <div>
                 <p>POOOOOOOOOPS!</p>
@@ -115,12 +139,13 @@ class Dookies extends Component {
                     <AddDookie renderAddForm={this.renderAddForm} dog={this.props.dog}/>
                 </div>
                 ) : (
-                    <button onClick={this.renderAddForm}>{this.props.dog.name} Pooped!</button>
+                    <button onClick={this.renderAddForm}>{this.props.dog.name} Pooped Today!</button>
                 )}
                 <DataTable 
                     title={`${this.props.dog.name}'s Dookies`}
                     columns={columns}
                     data={this.state.dookies}
+                    customStyles={customStyles}
                     striped={true}
                     pagination
                     expandableRows={true}
@@ -131,4 +156,5 @@ class Dookies extends Component {
     }
 }
 
+// export default withStyles(useStyles)(Dookies)
 export default Dookies

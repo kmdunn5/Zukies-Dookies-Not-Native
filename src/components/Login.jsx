@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import TextField from '@material-ui/core/TextField'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+
+const useStyles = theme => ({
+    textField: {
+        'border-color': '#009ffdff',
+    },
+    submit: {
+        'background-color': '#2a2a72ff'
+    }
+});
 
 class Login extends Component {
     constructor(props) {
@@ -42,20 +54,54 @@ class Login extends Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
             <div>
                 <h1>Log In</h1>
-                {this.state.noUser ? (<p>Username and Password do not match</p>) : (null)}
+                {this.state.noUser ? (<p className='error'>Username and Password do not match</p>) : (null)}
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" name="username" id="username" onChange={this.handleChange} value={this.state.username}/>
-                    <label htmlFor="">Password: </label>
-                    <input type="password" name="password" id="password" onChange={this.handleChange} value={this.state.password}/>
-                    <input type="submit" value="Log In"/>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        className={classes.textField}
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
+                        autoFocus
+                        defaultValue={this.state.username}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        className={classes.textField}
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        defaultValue={this.state.username}
+                        onChange={this.handleChange}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Log In
+                    </Button>
                 </form>
             </div>
         )
     }
 }
 
-export default Login
+export default withStyles(useStyles)(Login)

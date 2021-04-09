@@ -3,8 +3,22 @@ import Axios from 'axios'
 // import DataTable from 'react-data-table-component'
 import Dookies from './Dookies'
 import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
+
 import AddVaccine from './AddVaccine'
 import AddMedicine from './AddMedicine'
+
+import standing from '../images/161454.jpeg'
+import noseOut from '../images/IMG-9645.JPG'
+import behindFence from '../images/IMG-9646.JPG'
+import lookingUp from '../images/IMG-9651.JPG'
+
+const photos = [standing, noseOut, behindFence, lookingUp]
+
+const randomPhoto = () => {
+    let randomNum = Math.floor(Math.random() * photos.length)
+    return photos[randomNum]
+}
 
 // const vaxColumns = [
 //     {
@@ -67,6 +81,7 @@ class DogShow extends Component {
         this.getVax = this.getVax.bind(this)
         this.showMedsForm = this.showMedsForm.bind(this)
         this.getMeds = this.getMeds.bind(this)
+        this.showDookies = this.showDookies.bind(this)
     }
 
     componentDidMount() {
@@ -84,7 +99,6 @@ class DogShow extends Component {
                 dogBreed: res.data.data.breed,
                 dogImage: res.data.data.image,
                 dogNotes: res.data.data.notes,
-                mountDookies: true
             })
             this.getVax()
             this.getMeds()
@@ -165,60 +179,78 @@ class DogShow extends Component {
         })
     }
 
-    deleteVax(e) {
-        e.preventDefault()
-
-        Axios.delete(baseUrl + api + 'vaccines/' + this.state.dog.id)
+    showDookies() {
+        this.setState({
+            mountDookies: !this.state.mountDookies
+        })
     }
 
-    deleteMed(e) {
-        e.preventDefault()
+    // deleteVax(e) {
+    //     e.preventDefault()
 
-        Axios.delete(baseUrl + api + 'medicines/' + this.state.dog.id)
-    }
+    //     Axios.delete(baseUrl + api + 'vaccines/' + this.state.dog.id)
+    // }
+
+    // deleteMed(e) {
+    //     e.preventDefault()
+
+    //     Axios.delete(baseUrl + api + 'medicines/' + this.state.dog.id)
+    // }
 
     render() {
         return (
             <div>
-                <h1>Here is your Dog, {this.props.user.username}</h1>
-                {/* maybe an update toggle here? */}
-                <img src={this.state.dog.image} alt={this.state.dog.name}/>
-                <h2>{this.state.dog.name}</h2>
-                <h4>{this.state.dog.breed}</h4>
-                {this.state.mountDookies ? (
-                <div>
-                    <Dookies dog={this.state.dog} />
-                </div>
-                ) : ( null )}
-                <div className='vaccine-table'>
-                    <h3>Vaccines</h3>
-                    {this.state.vaxButtonClicked ? (
-                        <div>
-                            <AddVaccine getVax={this.getVax} showVaxForm={this.showVaxForm} dog={this.state.dog}/>
-                            <Button size='small' variant='outlined' onClick={() => this.showVaxForm()}>Cancel</Button>
+                <Container maxWidth='lg'>
+                    <div className='title'>
+                        <h1>Here's your dog, {this.props.user.username}!</h1>
+                    </div>
+                    {/* maybe an update toggle here? */}
+                    <img src={randomPhoto()} alt={this.state.dog.name}/>
+                    <div className='dog-data'>
+                        <h2>{this.state.dog.name}</h2>
+                        <h4>{this.state.dog.breed}</h4>
+                    </div>
+                </Container>
+                <div className='medical content'>
+                    {this.state.mountDookies ? (
+                    <div className='dookies-div'>
+                        <Button onClick={this.showDookies}>Hide Dookies</Button>
+                        <Dookies dog={this.state.dog} />
+                    </div>
+                    ) : ( <Button variant='contained' onClick={this.showDookies}>Show {this.state.dog.name}'s Dookies</Button> )}
+                    <div className='vax-meds-columns'>
+                        <div className='vaccine-table column'>
+                            <h3>Vaccines</h3>
+                            {this.state.vaxButtonClicked ? (
+                                <div>
+                                    <AddVaccine getVax={this.getVax} showVaxForm={this.showVaxForm} dog={this.state.dog}/>
+                                    <Button size='small' variant='outlined' onClick={() => this.showVaxForm()}>Cancel</Button>
+                                </div>
+                            ) : (
+                                <Button size='small' variant='outlined' onClick={() => this.showVaxForm()}>Add A Vaccine</Button>)}
+                            {this.state.mountVax ? (
+                                <div>
+                                    <p>Vax Table</p>
+                                </div>
+                            ) : ( null )}
                         </div>
-                    ) : (
-                        <Button size='small' variant='outlined' onClick={() => this.showVaxForm()}>Add A Vaccine</Button>)}
-                    {this.state.mountVax ? (
-                        <div>
-                            <p>Vax Table</p>
+                    
+                        <div className='meds-table column'>
+                            <h3>Medicines</h3>
+                            {this.state.medsButtonClicked ? (
+                                <div>
+                                    <AddMedicine getMeds={this.getMeds} showMedsForm={this.showMedsForm} dog={this.state.dog}/>
+                                    <Button size='small' variant='outlined' onClick={() => this.showMedsForm()}>Cancel</Button>
+                                </div>
+                            ) : (
+                                <Button size='small' variant='outlined' onClick={() => this.showMedsForm()}>Add A Medicine</Button>)}
+                            {this.state.mountMeds ? (
+                                <div>
+                                    <p>Meds Table</p>
+                                </div>
+                            ) : ( null )}
                         </div>
-                    ) : ( null )}
-                </div>
-                <div className='meds-table'>
-                    <h3>Medicines</h3>
-                    {this.state.medsButtonClicked ? (
-                        <div>
-                            <AddMedicine getMeds={this.getMeds} showMedsForm={this.showMedsForm} dog={this.state.dog}/>
-                            <Button size='small' variant='outlined' onClick={() => this.showMedsForm()}>Cancel</Button>
-                        </div>
-                    ) : (
-                        <Button size='small' variant='outlined' onClick={() => this.showMedsForm()}>Add A Medicine</Button>)}
-                    {this.state.mountMeds ? (
-                        <div>
-                            <p>Meds Table</p>
-                        </div>
-                    ) : ( null )}
+                    </div>
                 </div>
             </div>
         )
