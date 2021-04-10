@@ -95,18 +95,25 @@ class UserHome extends Component {
                         this.props.history.push('/dog/' + row.id)
                     }}
                      /> */}
-                <Grid spacing={2}>
-                    {this.state.dogs.map( dog => {
-                        return (
-                            <Card key={dog.id} className='each-dog'>
-                                <CardActionArea>
-                                    <p>{dog.name}</p>
-                                    <Link to={`/dog/${dog.id}`}><img src={randomPhoto()} alt={dog.name} /></Link>
-                                </CardActionArea>
-                            </Card>
-                        )
-                    })}
+                <Grid container spacing={2}>
+                    <Grid item>
+                        <Grid container spacing={2} justify='center'>
+                            {this.state.dogs.map( dog => {
+                                return (
+                                    <Card key={dog.id} className='each-dog'>
+                                        <Link to={`/dog/${dog.id}`}>
+                                            <CardActionArea>
+                                                <p>{dog.name}</p>
+                                                <img src={randomPhoto()} alt={dog.name} />
+                                            </CardActionArea>
+                                        </Link>
+                                    </Card>
+                                )
+                            })}
+                        </Grid>
+                    </Grid>
                 </Grid>
+                <div className='add-dog-button'>
                 {this.state.addDog ? (
                     <div>
                         <AddDog getUserDogs={this.getUserDogs}/>
@@ -115,6 +122,7 @@ class UserHome extends Component {
                 ) : (
                     <Button size='small' variant='contained' color='primary' onClick={() => this.toggleAddState()}>Time To Add a New Dog!</Button>
                 )}
+                </div>
             </div>
         )
     }

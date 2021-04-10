@@ -138,4 +138,9 @@ img {
 
 .each-dog {
   max-width: 300px;
+  margin: 10px;
+}
+
+.add-dog-button {
+  margin-top: 50px;
 }
