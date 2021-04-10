@@ -11,6 +11,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 // import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button'
 
 const customStyles = {
     // table: {
@@ -29,12 +30,12 @@ const customStyles = {
     //     paddingRight: '8px',
     //   },
     // },
-    cells: {
-      style: {
-        paddingLeft: '8px', // override the cell padding for data cells
-        paddingRight: '8px',
-      },
-    },
+    // cells: {
+    //   style: {
+    //     paddingLeft: '8px', // override the cell padding for data cells
+    //     paddingRight: '8px',
+    //   },
+    // },
   };
 
 const columns = [
@@ -135,11 +136,11 @@ class Dookies extends Component {
                 <p>POOOOOOOOOPS!</p>
                 {this.state.addForm ? (
                 <div> 
-                    <button onClick={this.renderAddForm}>Nevermind...</button>
+                    <Button color='primary' variant='outlined' onClick={this.renderAddForm}>Nevermind...</Button>
                     <AddDookie renderAddForm={this.renderAddForm} dog={this.props.dog}/>
                 </div>
                 ) : (
-                    <button onClick={this.renderAddForm}>{this.props.dog.name} Pooped Today!</button>
+                    <Button color='primary' variant='outlined' onClick={this.renderAddForm}>{this.props.dog.name} Pooped Today!</Button>
                 )}
                 <DataTable 
                     title={`${this.props.dog.name}'s Dookies`}

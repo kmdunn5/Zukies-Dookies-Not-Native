@@ -10,7 +10,8 @@ const useStyles = theme => ({
     },
     submit: {
         'background-color': '#2a2a72ff',
-        'margin-top': 20
+        'margin-top': 20,
+        'max-width': 'fit-content'
     }
 })
 

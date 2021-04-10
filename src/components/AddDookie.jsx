@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/Styles'
+
+const useStyles = theme => ({
+    button: {
+        'background-color': '#2a2a72ff',
+        color: '#ffffffff',
+        margin: '10px',
+        'max-width': 'fit-content'
+    }
+})
 
 let baseUrl = 'http://localhost:5000/'
 let api = 'api/v1/'
-// let path = window.location.pathname
-// let pathSplit = path.split('/')
 
 class AddDookie extends Component {
     constructor(props) {
@@ -60,9 +69,11 @@ class AddDookie extends Component {
     }
 
     render() {
+        const { classes } = this.props
+
         return(
             <div>
-                <p>Time to Add a Dookie! You can track whether this is a normal Dookie or an abnormal Dookie. If it's normal, we'll record everything else for you! <br /> Just so you know, we consider a normal Dookie to be brown in color, shapped like a log, have a compact consistency, be of an expected size, and contain nothing unusual. If you want to change any of those values for this poop, just select abnormal!</p>
+                <p className='add-dookie-text'>Time to Add a Dookie! You can track whether this is a normal Dookie or an abnormal Dookie. If it's normal, we'll record everything else for you! <br /> <br /> Just so you know, we consider a normal Dookie to be brown in color, shapped like a log, have a compact consistency, be of an expected size, and contain nothing unusual. If you want to change any of those values for this poop, just select abnormal!</p>
                 <form onSubmit={this.addDookie}>
                     <label htmlFor="food">Food: </label>
                     <input type="text" name="food" id="food" value={this.state.food} onChange={this.handleChange} required/>
@@ -95,11 +106,19 @@ class AddDookie extends Component {
                         <input type="text" name="content" id="content" value={this.state.content} onChange={this.handleChange} hidden/>
                     </div>
                     )}
-                    <input type="submit" value="Add Dookie"/>
+                    <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color='primary'
+                            className={classes.button}
+                        >
+                            Add Dog
+                        </Button>
                 </form>
             </div>
         )
     }
 }
 
-export default AddDookie
+export default withStyles(useStyles)(AddDookie)

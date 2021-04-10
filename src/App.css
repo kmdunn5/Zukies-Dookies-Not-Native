@@ -141,6 +141,17 @@ img {
   margin: 10px;
 }
 
+.add-form-div {
+  display: flex;
+  max-width: 40%;
+  justify-content: center;
+  align-self: center;
+}
+
 .add-dog-button {
   margin-top: 50px;
+}
+
+.add-dookie-text {
+  max-width: 400px;
 }

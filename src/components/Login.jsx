@@ -70,7 +70,6 @@ class Login extends Component {
                         className={classes.textField}
                         label="Username"
                         name="username"
-                        autoComplete="username"
                         autoFocus
                         defaultValue={this.state.username}
                         onChange={this.handleChange}
