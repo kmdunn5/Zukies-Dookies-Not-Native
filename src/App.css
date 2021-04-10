@@ -135,3 +135,7 @@ img {
 .error {
   color: #e71d36ff;
 }
+
+.each-dog {
+  max-width: 300px;
+}
