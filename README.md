@@ -1,6 +1,12 @@
 # Zookies-Dookies-Not-Native
 
-Not React Native front end
+## Links
+
+- [Zookies Dookies](https://zookies-dookies.herokuapp.com)
+- [Ken's Portfolio](https://kmdunn5.github.io/Kens-Portfolio-Site/)
+- [Front End Github](https://github.com/kmdunn5/Zukies-Dookies-Not-Native)
+- [Back End Github](https://github.com/kmdunn5/Zukies-Dookies-Backend)
+- [Ken's Portfolio Github](https://github.com/kmdunn5/Kens-Portfolio-Site)
 
 This is the react version of Zookies Dookies. This app features the following technologies:
 
@@ -10,11 +16,11 @@ This is the react version of Zookies Dookies. This app features the following te
 - Axios
 - React Data Table Components
 - Material UI
-- Component Styling
+- Styled Components
 
 This app allows the user to log in and/or create an account. Then they can add a dog to their list, and then track some of the medical information for their dog. This will also include the dog's poops!
 
-## Problems Ran Into
+## Problems I Ran Into
 
 - Too much time spent on data structure
 - started react native, didn't have time enough for that
@@ -28,3 +34,4 @@ This app allows the user to log in and/or create an account. Then they can add a
 - Upload pictures
 - Update dookies, meds, vaccines (and dog)
 - Make the show dogs button instead show a random dog and a set number
+- Update mobile responsiveness
