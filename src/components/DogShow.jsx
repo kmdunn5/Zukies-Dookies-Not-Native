@@ -5,7 +5,7 @@ import Dookies from './Dookies'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import DataTable from 'react-data-table-component'
-import { withStyles } from '@material-ui/core/Styles'
+import { withStyles } from '@material-ui/core/styles'
 
 import AddVaccine from './AddVaccine'
 import AddMedicine from './AddMedicine'

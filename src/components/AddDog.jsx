@@ -3,7 +3,7 @@ import Axios from 'axios'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
-import { withStyles } from '@material-ui/core/Styles'
+import { withStyles } from '@material-ui/core/styles'
 
 const useStyles = theme => ({
     textField: {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import Button from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/Styles'
+import { withStyles } from '@material-ui/core/styles'
 
 const useStyles = theme => ({
     button: {
