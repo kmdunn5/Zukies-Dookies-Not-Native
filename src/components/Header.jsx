@@ -46,10 +46,10 @@ class Header extends Component {
 
         return (
             <AppBar position='static' className={classes.appBar}>
-                {/* <div className='logo'>Zukies Dookies</div> */}
+                {/* <div className='logo'>Zookies Dookies</div> */}
                 <div className='nav-buttons'>
                     <div className='home-page'>
-                        <Link to='/'><Button className={classes.button}>Zukies Dookies</Button></Link>
+                        <Link to='/'><Button className={classes.button}>Zookies Dookies</Button></Link>
                     </div>
                     {this.props.loggedIn ? (
                     <div>

@@ -119,7 +119,7 @@ class AddDookie extends Component {
                             color='primary'
                             className={classes.button}
                         >
-                            Add Dog
+                            Add Dookie
                         </Button>
                 </form>
             </div>
