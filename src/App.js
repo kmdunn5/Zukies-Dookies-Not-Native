@@ -19,8 +19,6 @@ if (process.env.NODE_ENV === 'development') {
 };
 let api = '/api/v1/'
 
-console.log(baseUrl + api)
-
 class App extends Component{
   constructor(props) {
     super(props)
