@@ -3,10 +3,10 @@ import Axios from 'axios'
 
 let baseUrl
 
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
+if (process.env.NODE_ENV === 'production') {
+    baseUrl = process.env.API_URL;
 } else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
+    baseUrl = 'http://localhost:5000';
 };
 let api = '/api/v1/'
 
