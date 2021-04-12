@@ -15,6 +15,15 @@ const useStyles = theme => ({
     }
 })
 
+let baseUrl
+
+if (process.env.NODE_ENV === 'development') {
+    baseUrl = 'http://localhost:5000';
+} else {
+    baseUrl = 'https://zookies-dookies.herokuapp.com';
+};
+let api = '/api/v1/'
+
 class SignUp extends Component {
     constructor(props) {
         super(props)
@@ -38,7 +47,7 @@ class SignUp extends Component {
         e.preventDefault()
         console.log('clicked submit')
 
-        Axios.post('http://localhost:5000/api/v1/caretakers/register',
+        Axios.post(baseUrl + api + 'caretakers/register',
             {
                 username: this.state.username,
                 email: this.state.email,

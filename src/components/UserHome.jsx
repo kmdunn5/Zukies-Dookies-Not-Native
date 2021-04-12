@@ -22,15 +22,15 @@ const randomPhoto = () => {
     return photos[randomNum]
 }
 
+let baseUrl
+
 if (process.env.NODE_ENV === 'development') {
-    let baseUrl = 'http://localhost:5000';
+    baseUrl = 'http://localhost:5000';
 } else {
-    let baseUrl = 'https://zookies-dookies.herokuapp.com';
+    baseUrl = 'https://zookies-dookies.herokuapp.com';
 };
 
-console.log(baseUrl)
-
-let api = 'api/v1/'
+let api = '/api/v1/'
 
 // const columns = [
 //     {
