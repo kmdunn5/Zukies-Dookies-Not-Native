@@ -12,14 +12,14 @@ import './App.css'
 
 let baseUrl
 
-if (process.env.NODE_ENV === 'production') {
-  baseUrl = process.env.API_URL;
+if (process.env.NODE_ENV === 'development') {
+    baseUrl = 'http://localhost:5000';
 } else {
-  baseUrl = 'http://localhost:5000';
+    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
 };
 let api = '/api/v1/'
 
-console.log(baseUrl)
+console.log(baseUrl + api)
 
 class App extends Component{
   constructor(props) {
