@@ -45,7 +45,6 @@ class SignUp extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        console.log('clicked submit')
 
         Axios.post(baseUrl + api + 'caretakers/register',
             {
@@ -55,9 +54,9 @@ class SignUp extends Component {
                 role: this.state.role
             },
             {withCredentials: true}
-        ).then(res => {if (res.data.status.code === 200) {
+        ).then(res => {if (res.data.status.code === 201) {
             this.props.setUser()
-            this.props.history.push('/' + res.data.data.id)
+            this.props.history.push('/user')
         }})
     }
 
