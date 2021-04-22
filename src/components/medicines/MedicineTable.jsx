@@ -42,7 +42,6 @@ class MedicineTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dog: this.props.dog,
             medicines: ''
         }
         this.handleChange = this.handleChange.bind(this)

@@ -35,11 +35,14 @@ class VaccineTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dog: '',
             vaccines: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.getVax = this.getVax.bind(this)
+    }
+
+    componentDidMount() {
+        this.getVax()
     }
 
     handleChange(e) {
@@ -49,7 +52,7 @@ class VaccineTable extends Component {
     }
 
     getVax() {
-        Axios.get(baseUrl + api + 'vaccines/' + this.props.match.params.dogId,
+        Axios.get(baseUrl + api + 'vaccines/' + this.props.dog.id,
             {withCredentials: true}
         ).then(res => { if (res.data.status.code === 200) {
             this.setState({
