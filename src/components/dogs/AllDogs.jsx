@@ -3,10 +3,10 @@ import Axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 
-import standing from '../images/161454.jpeg'
-import noseOut from '../images/IMG-9645.JPG'
-import behindFence from '../images/IMG-9646.JPG'
-import lookingUp from '../images/IMG-9651.JPG'
+import standing from '../../images/161454.jpeg'
+import noseOut from '../../images/IMG-9645.JPG'
+import behindFence from '../../images/IMG-9646.JPG'
+import lookingUp from '../../images/IMG-9651.JPG'
 
 const photos = [standing, noseOut, behindFence, lookingUp]
 

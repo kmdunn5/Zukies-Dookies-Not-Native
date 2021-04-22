@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 // import DataTable from 'react-data-table-component'
-import Dookies from './Dookies'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import DataTable from 'react-data-table-component'
 import { withStyles } from '@material-ui/core/styles'
 
-import AddVaccine from './AddVaccine'
-import AddMedicine from './AddMedicine'
+import Dookies from '../dookies/Dookies'
+import MedicineShow from '../medicines/MedicineShow'
+import VaccineShow from '../vaccines/VaccineShow'
+import AddVaccine from '../vaccines/AddVaccine'
+import AddMedicine from '../medicines/AddMedicine'
 
-import standing from '../images/161454.jpeg'
-import noseOut from '../images/IMG-9645.JPG'
-import behindFence from '../images/IMG-9646.JPG'
-import lookingUp from '../images/IMG-9651.JPG'
+import standing from '../../images/161454.jpeg'
+import noseOut from '../../images/IMG-9645.JPG'
+import behindFence from '../../images/IMG-9646.JPG'
+import lookingUp from '../../images/IMG-9651.JPG'
 
 const photos = [standing, noseOut, behindFence, lookingUp]
 

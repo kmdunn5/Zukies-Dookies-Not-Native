@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 
-import AllDogs from './AllDogs'
+import AllDogs from './dogs/AllDogs'
 
 class Home extends Component {
     constructor(props) {
