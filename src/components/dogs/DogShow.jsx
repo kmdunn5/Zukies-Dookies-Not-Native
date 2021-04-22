@@ -3,12 +3,12 @@ import Axios from 'axios'
 // import DataTable from 'react-data-table-component'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
-import DataTable from 'react-data-table-component'
+// import DataTable from 'react-data-table-component'
 import { withStyles } from '@material-ui/core/styles'
 
 import Dookies from '../dookies/Dookies'
-import MedicineShow from '../medicines/MedicineShow'
-import VaccineShow from '../vaccines/VaccineShow'
+import MedicineTable from '../medicines/MedicineTable'
+import VaccineTable from '../vaccines/VaccineTable'
 import AddVaccine from '../vaccines/AddVaccine'
 import AddMedicine from '../medicines/AddMedicine'
 
@@ -32,50 +32,50 @@ const useStyles = theme => ({
     }
 })
 
-const vaxColumns = [
-    {
-        name: 'Name',
-        selector: 'vaccine_name',
-        sortable: true
-    },
-    {
-        name: 'Date Taken',
-        selector: 'date_taken',
-        format: row => {
-            let date = row.date_taken.split('00')
-            let dateNoDay = date[0].split(' ')
-            dateNoDay.splice(0, 1)
-            let newDate = dateNoDay.join(' ')
-            return newDate
-        },
-        sortable: true
-    }
-]
+// const vaxColumns = [
+//     {
+//         name: 'Name',
+//         selector: 'vaccine_name',
+//         sortable: true
+//     },
+//     {
+//         name: 'Date Taken',
+//         selector: 'date_taken',
+//         format: row => {
+//             let date = row.date_taken.split('00')
+//             let dateNoDay = date[0].split(' ')
+//             dateNoDay.splice(0, 1)
+//             let newDate = dateNoDay.join(' ')
+//             return newDate
+//         },
+//         sortable: true
+//     }
+// ]
 
-const medsColumns = [
-    {
-        name: 'Name',
-        selector: 'medicine_name',
-        sortable: true
-    },
-    {
-        name: 'Most Recent Date Taken',
-        selector: 'most_recent_date',
-        format: row => {
-            let date = row.most_recent_date.split('00')
-            let dateNoDay = date[0].split(' ')
-            dateNoDay.splice(0, 1)
-            let newDate = dateNoDay.join(' ')
-            return newDate
-        },
-        sortable: true
-    },
-    {
-        name: 'Frequency',
-        selector: 'frequency',
-        sortable: true
-    }
-]
+// const medsColumns = [
+//     {
+//         name: 'Name',
+//         selector: 'medicine_name',
+//         sortable: true
+//     },
+//     {
+//         name: 'Most Recent Date Taken',
+//         selector: 'most_recent_date',
+//         format: row => {
+//             let date = row.most_recent_date.split('00')
+//             let dateNoDay = date[0].split(' ')
+//             dateNoDay.splice(0, 1)
+//             let newDate = dateNoDay.join(' ')
+//             return newDate
+//         },
+//         sortable: true
+//     },
+//     {
+//         name: 'Frequency',
+//         selector: 'frequency',
+//         sortable: true
+//     }
+// ]
 
 let baseUrl
 
@@ -316,13 +316,7 @@ class DogShow extends Component {
                                 <Button size='small' variant='contained' className={classes.button} onClick={() => this.showVaxForm()}>Add A Vaccine</Button>)}
                             {this.state.mountVax ? (
                                 <div>
-                                    <DataTable 
-                                        title={`${this.state.dog.name}'s Vaccines`}
-                                        columns={vaxColumns}
-                                        data={this.state.vaccines}
-                                        responsive={true}
-                                        striped={true}
-                                    />
+                                    <VaccineTable dog={this.state.dog} />
                                     <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showVaxTable}>Hide Table</Button>
                                 </div>
                             ) : ( <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showVaxTable}>Show Vaccine Table</Button> )}
@@ -339,13 +333,7 @@ class DogShow extends Component {
                                 <Button size='small' variant='contained' className={classes.button} onClick={() => this.showMedsForm()}>Add A Medicine</Button>)}
                             {this.state.mountMeds ? (
                                 <div>
-                                    <DataTable 
-                                        title={`${this.state.dog.name}'s Medicines`}
-                                        columns={medsColumns}
-                                        data={this.state.medicines}
-                                        responsive={true}
-                                        striped={true}
-                                    />
+                                    <MedicineTable dog={this.state.dog}/>
                                     <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showMedsTable}>Hide Table</Button>
                                 </div>
                             ) : ( <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showMedsTable}>Show Medicine Table</Button> )}

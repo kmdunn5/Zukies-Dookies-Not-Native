@@ -1,30 +1,23 @@
 import React, { Component } from 'react'
-import Axios from 'axios'
 import DataTable from 'react-data-table-component'
+import Axios from 'axios'
 
-// import MedicineUpdate from './MedicineUpdate'
-
-const medsColumns = [
+const vaxColumns = [
     {
         name: 'Name',
-        selector: 'medicine_name',
+        selector: 'vaccine_name',
         sortable: true
     },
     {
-        name: 'Most Recent Date Taken',
-        selector: 'most_recent_date',
+        name: 'Date Taken',
+        selector: 'date_taken',
         format: row => {
-            let date = row.most_recent_date.split('00')
+            let date = row.date_taken.split('00')
             let dateNoDay = date[0].split(' ')
             dateNoDay.splice(0, 1)
             let newDate = dateNoDay.join(' ')
             return newDate
         },
-        sortable: true
-    },
-    {
-        name: 'Frequency',
-        selector: 'frequency',
         sortable: true
     }
 ]
@@ -38,14 +31,15 @@ if (process.env.NODE_ENV === 'development') {
 };
 let api = '/api/v1/'
 
-class MedicineShow extends Component {
+class VaccineTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            medicines: ''
+            dog: '',
+            vaccines: ''
         }
         this.handleChange = this.handleChange.bind(this)
-        this.getMeds = this.getMeds.bind(this)
+        this.getVax = this.getVax.bind(this)
     }
 
     handleChange(e) {
@@ -54,12 +48,12 @@ class MedicineShow extends Component {
         })
     }
 
-    getMeds() {
-        Axios.get(baseUrl + api + 'medicines/' + this.props.match.params.dogId,
+    getVax() {
+        Axios.get(baseUrl + api + 'vaccines/' + this.props.match.params.dogId,
             {withCredentials: true}
         ).then(res => { if (res.data.status.code === 200) {
             this.setState({
-                medicines: res.data.data,
+                vaccines: res.data.data,
             })
         }})
     }
@@ -67,9 +61,9 @@ class MedicineShow extends Component {
     render() {
         return (
             <DataTable 
-                title={`${this.state.dog.name}'s Medicines`}
-                columns={medsColumns}
-                data={this.state.medicines}
+                title={`${this.state.dog.name}'s Vaccines`}
+                columns={vaxColumns}
+                data={this.state.vaccines}
                 responsive={true}
                 striped={true}
             />
@@ -77,4 +71,4 @@ class MedicineShow extends Component {
     }
 }
 
-export default MedicineShow
+export default VaccineTable
