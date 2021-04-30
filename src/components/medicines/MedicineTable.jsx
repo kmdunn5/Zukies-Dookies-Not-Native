@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import DataTable from 'react-data-table-component'
 
-// import MedicineUpdate from './MedicineUpdate'
+import MedicineUpdate from './MedicineUpdate'
 
 const medsColumns = [
     {
@@ -29,6 +29,23 @@ const medsColumns = [
     }
 ]
 
+const ExpandedRow = ({data, toggleUpdate, update}) => { return (
+    <div>
+        { update ? 
+        (
+        <div>
+            <MedicineUpdate data={data}/>
+            <button onClick={toggleUpdate}>Cancel</button>
+        </div>
+        ):(
+        <div>
+            <button onClick={toggleUpdate}>Update</button>
+            <button>Delete</button>
+        </div>
+        )}
+    </div>
+)}
+
 let baseUrl
 
 if (process.env.NODE_ENV === 'development') {
@@ -42,9 +59,11 @@ class MedicineTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            medicines: ''
+            medicines: '',
+            update: false
         }
         this.handleChange = this.handleChange.bind(this)
+        this.toggleUpdate = this.toggleUpdate.bind(this)
         this.getMeds = this.getMeds.bind(this)
     }
 
@@ -55,6 +74,12 @@ class MedicineTable extends Component {
     handleChange(e) {
         this.setState({
             [e.target.id]: e.target.value
+        })
+    }
+
+    toggleUpdate() {
+        this.setState({
+            update: !this.state.update
         })
     }
 
@@ -71,11 +96,14 @@ class MedicineTable extends Component {
     render() {
         return (
             <DataTable 
-                title={`${this.state.dog.name}'s Medicines`}
+                title={`${this.props.dog.name}'s Medicines`}
                 columns={medsColumns}
                 data={this.state.medicines}
                 responsive={true}
                 striped={true}
+                pagination
+                expandableRows={true}
+                expandableRowsComponent={<ExpandedRow toggleUpdate={this.toggleUpdate} update={this.state.update} />}
             />
         )
     }

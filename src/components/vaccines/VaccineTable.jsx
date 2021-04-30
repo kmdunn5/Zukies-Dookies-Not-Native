@@ -64,7 +64,7 @@ class VaccineTable extends Component {
     render() {
         return (
             <DataTable 
-                title={`${this.state.dog.name}'s Vaccines`}
+                title={`${this.props.dog.name}'s Vaccines`}
                 columns={vaxColumns}
                 data={this.state.vaccines}
                 responsive={true}
