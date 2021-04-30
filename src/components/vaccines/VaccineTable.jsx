@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DataTable from 'react-data-table-component'
 import Axios from 'axios'
+import VaccineUpdate from './VaccineUpdate'
 
 const vaxColumns = [
     {
@@ -22,6 +23,23 @@ const vaxColumns = [
     }
 ]
 
+const ExpandedRow = ({data, toggleUpdate, update}) => { return (
+    <div>
+        { update ? 
+        (
+        <div>
+            <VaccineUpdate data={data}/>
+            <button onClick={toggleUpdate}>Cancel</button>
+        </div>
+        ):(
+        <div>
+            <button onClick={toggleUpdate}>Update</button>
+            <button>Delete</button>
+        </div>
+        )}
+    </div>
+)}
+
 let baseUrl
 
 if (process.env.NODE_ENV === 'development') {
@@ -35,7 +53,8 @@ class VaccineTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            vaccines: ''
+            vaccines: '',
+            update: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.getVax = this.getVax.bind(this)
@@ -48,6 +67,12 @@ class VaccineTable extends Component {
     handleChange(e) {
         this.setState({
             [e.target.id]: e.target.value
+        })
+    }
+
+    toggleUpdate() {
+        this.setState({
+            update: !this.state.update
         })
     }
 
@@ -69,6 +94,9 @@ class VaccineTable extends Component {
                 data={this.state.vaccines}
                 responsive={true}
                 striped={true}
+                pagination
+                expandableRows={true}
+                expandableRowsComponent={<ExpandedRow toggleUpdate={this.toggleUpdate} update={this.state.update} />}
             />
         )
     }

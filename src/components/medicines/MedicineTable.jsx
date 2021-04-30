@@ -29,7 +29,7 @@ const medsColumns = [
     }
 ]
 
-const ExpandedRow = ({data, toggleUpdate, update}) => { return (
+const ExpandedRow = ({data, toggleUpdate, update, deleteMed}) => { return (
     <div>
         { update ? 
         (
@@ -40,7 +40,7 @@ const ExpandedRow = ({data, toggleUpdate, update}) => { return (
         ):(
         <div>
             <button onClick={toggleUpdate}>Update</button>
-            <button>Delete</button>
+            <button onClick={() => deleteMed(data.id)}>Delete</button>
         </div>
         )}
     </div>
@@ -65,6 +65,7 @@ class MedicineTable extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.toggleUpdate = this.toggleUpdate.bind(this)
         this.getMeds = this.getMeds.bind(this)
+        this.deleteMed = this.deleteMed.bind(this)
     }
 
     componentDidMount() {
@@ -93,6 +94,15 @@ class MedicineTable extends Component {
         }})
     }
 
+    deleteMed(medId) {
+        Axios.delete(baseUrl + api + 'medicines/' + this.props.dog.id + '/' + medId,
+            {withCredentials: true}
+        ).then(res => { if (res.data.status.code === 200) {
+            this.getMeds()
+            console.log('deleted')
+        }})
+    }
+
     render() {
         return (
             <DataTable 
@@ -103,7 +113,7 @@ class MedicineTable extends Component {
                 striped={true}
                 pagination
                 expandableRows={true}
-                expandableRowsComponent={<ExpandedRow toggleUpdate={this.toggleUpdate} update={this.state.update} />}
+                expandableRowsComponent={<ExpandedRow toggleUpdate={this.toggleUpdate} update={this.state.update} deleteMed={this.deleteMed} />}
             />
         )
     }
