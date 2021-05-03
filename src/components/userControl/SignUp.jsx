@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+import {baseUrl, api} from '../../baseUrl.js'
+
 const useStyles = theme => ({
     textField: {
         'border-color': '#009ffdff',
@@ -14,15 +16,6 @@ const useStyles = theme => ({
         'max-width': 'fit-content'
     }
 })
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-let api = '/api/v1/'
 
 class SignUp extends Component {
     constructor(props) {

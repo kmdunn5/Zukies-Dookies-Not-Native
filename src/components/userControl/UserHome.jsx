@@ -6,8 +6,8 @@ import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
 import { Link } from 'react-router-dom'
 
+import {baseUrl, api} from '../../baseUrl.js'
 import AddDog from '../dogs/AddDog'
-
 
 import standing from '../../images/161454.jpeg'
 import noseOut from '../../images/IMG-9645.JPG'
@@ -21,16 +21,6 @@ const randomPhoto = () => {
     let randomNum = Math.floor(Math.random() * photos.length)
     return photos[randomNum]
 }
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-
-let api = '/api/v1/'
 
 // const columns = [
 //     {

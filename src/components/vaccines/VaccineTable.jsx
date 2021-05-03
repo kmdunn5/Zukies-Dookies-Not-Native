@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import DataTable from 'react-data-table-component'
 import Axios from 'axios'
+
+import {baseUrl, api} from '../../baseUrl.js'
 import VaccineUpdate from './VaccineUpdate'
 
 const vaxColumns = [
@@ -39,15 +41,6 @@ const ExpandedRow = ({data, toggleUpdate, update}) => { return (
         )}
     </div>
 )}
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-let api = '/api/v1/'
 
 class VaccineTable extends Component {
     constructor(props) {

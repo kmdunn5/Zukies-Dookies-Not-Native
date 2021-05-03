@@ -5,6 +5,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 
+import {baseUrl, api} from '../baseUrl.js'
+
 const useStyles = theme => ({
     button: {
       color: '#ffffffff',
@@ -17,16 +19,6 @@ const useStyles = theme => ({
         // 'align-items': 'center'
     }
 });
-
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-let api = '/api/v1/'
 
 class Header extends Component {
     constructor(props) {

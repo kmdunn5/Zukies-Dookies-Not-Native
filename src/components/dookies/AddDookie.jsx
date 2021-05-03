@@ -3,6 +3,8 @@ import Axios from 'axios'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 
+import {baseUrl, api} from '../../baseUrl.js'
+
 const useStyles = theme => ({
     button: {
         'background-color': '#2a2a72ff',
@@ -11,15 +13,6 @@ const useStyles = theme => ({
         'max-width': 'fit-content'
     }
 })
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-let api = '/api/v1/'
 
 class AddDookie extends Component {
     constructor(props) {

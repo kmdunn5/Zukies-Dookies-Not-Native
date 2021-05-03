@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import DataTable from 'react-data-table-component'
 
+import {baseUrl, api} from '../../baseUrl.js'
 import MedicineUpdate from './MedicineUpdate'
 
 const medsColumns = [
@@ -45,15 +46,6 @@ const ExpandedRow = ({data, toggleUpdate, update, deleteMed}) => { return (
         )}
     </div>
 )}
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-let api = '/api/v1/'
 
 class MedicineTable extends Component {
     constructor(props) {

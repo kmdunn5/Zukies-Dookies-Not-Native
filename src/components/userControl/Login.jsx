@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
+import {baseUrl, api} from '../../baseUrl.js'
+
 const useStyles = theme => ({
     textField: {
         'border-color': '#009ffdff',
@@ -12,15 +14,6 @@ const useStyles = theme => ({
         'background-color': '#2a2a72ff'
     }
 });
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-let api = '/api/v1/'
 
 class Login extends Component {
     constructor(props) {

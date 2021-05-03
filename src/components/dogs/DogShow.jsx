@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 // import DataTable from 'react-data-table-component'
 import { withStyles } from '@material-ui/core/styles'
 
+import {baseUrl, api} from '../../baseUrl.js'
 import Dookies from '../dookies/Dookies'
 import MedicineTable from '../medicines/MedicineTable'
 import VaccineTable from '../vaccines/VaccineTable'
@@ -31,60 +32,6 @@ const useStyles = theme => ({
         margin: '10px'
     }
 })
-
-// const vaxColumns = [
-//     {
-//         name: 'Name',
-//         selector: 'vaccine_name',
-//         sortable: true
-//     },
-//     {
-//         name: 'Date Taken',
-//         selector: 'date_taken',
-//         format: row => {
-//             let date = row.date_taken.split('00')
-//             let dateNoDay = date[0].split(' ')
-//             dateNoDay.splice(0, 1)
-//             let newDate = dateNoDay.join(' ')
-//             return newDate
-//         },
-//         sortable: true
-//     }
-// ]
-
-// const medsColumns = [
-//     {
-//         name: 'Name',
-//         selector: 'medicine_name',
-//         sortable: true
-//     },
-//     {
-//         name: 'Most Recent Date Taken',
-//         selector: 'most_recent_date',
-//         format: row => {
-//             let date = row.most_recent_date.split('00')
-//             let dateNoDay = date[0].split(' ')
-//             dateNoDay.splice(0, 1)
-//             let newDate = dateNoDay.join(' ')
-//             return newDate
-//         },
-//         sortable: true
-//     },
-//     {
-//         name: 'Frequency',
-//         selector: 'frequency',
-//         sortable: true
-//     }
-// ]
-
-let baseUrl
-
-if (process.env.NODE_ENV === 'development') {
-    baseUrl = 'http://localhost:5000';
-} else {
-    baseUrl = 'https://zookies-dookies-backend.herokuapp.com';
-};
-let api = '/api/v1/'
 
 class DogShow extends Component {
     constructor(props) {
