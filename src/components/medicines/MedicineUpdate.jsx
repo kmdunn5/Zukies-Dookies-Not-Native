@@ -22,6 +22,15 @@ class MedicineUpdate extends Component {
         return (
             <div>
                 <p>Update {this.props.data.medicine_name}</p>
+                <form>
+                    <label htmlFor="">Name</label>
+                    <input type="text" name="" id=""/>
+                    <label htmlFor="">Most Recent Date</label>
+                    <input type="date" name="" id=""/>
+                    <label htmlFor="">Frequency</label>
+                    <input type="text" name="" id=""/>
+                    <input type="submit" value="Update"/>
+                </form>
             </div>
         )
     }

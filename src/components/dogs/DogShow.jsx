@@ -30,7 +30,20 @@ const useStyles = theme => ({
         'background-color': '#2a2a72ff',
         color: '#ffffffff',
         margin: '10px'
-    }
+    },
+    dogNav: {
+        display: 'flex',
+        'justify-content': 'space-around',
+        'background-color': '#2a2a72ff',
+        width: '100%',
+        'border-radius': '10px'
+    },
+    navButton: {
+        'background-color': '#ffa400ff',
+        color: '#ffffffff',
+        margin: '10px',
+        width: '120px'
+    },
 })
 
 class DogShow extends Component {
@@ -111,22 +124,6 @@ class DogShow extends Component {
     handleChange(e) {
         this.setState({
             [e.target.id]: e.target.value
-        })
-    }
-
-    handleAddMed(e) {
-        e.preventDefault()
-
-        Axios.post(baseUrl + api + 'medicines/' + this.state.dog.id, 
-        {
-            medicine_name: this.state.medName,
-            most_recent_date: this.state.medRecentDate,
-            frequency: this.state.medfrequency
-        },
-            {withCredentials: true}
-        ).then(res => {if (res.data.status.code === 201) {
-            this.getMeds()
-            }
         })
     }
 
@@ -228,7 +225,6 @@ class DogShow extends Component {
                     <div className='title'>
                         <h1>Here's your dog, {this.props.user.username}!</h1>
                     </div>
-                    {/* maybe an update toggle here? */}
                     <img src={randomPhoto()} alt={this.state.dog.name}/>
                     <div className='dog-data'>
                         <h2>{this.state.dog.name}</h2>
@@ -244,18 +240,31 @@ class DogShow extends Component {
                         
                     </div>
                 </Container>
+                <Container className={classes.dogNav}>
+                    <div className='dog-info'>
+                        <Button className={classes.navButton}>Info</Button>
+                    </div>
+                    <div className='vaccine-table'>
+                        <Button className={classes.navButton} onClick={this.showVaxTable}>Vaccines</Button>
+                    </div>
+                    <div className='medicine-table'>
+                        <Button className={classes.navButton} onClick={this.showMedsTable}>Medicines</Button>
+                    </div>
+                    <div className='dookie-table'>
+                        <Button className={classes.navButton} onClick={this.showDookies}>Dookies</Button>
+                    </div>
+                </Container>
                 <div className='medical content'>
                     {this.state.mountDookies ? (
                     <div className='dookies-div'>
-                        <Button variant='contained' className={classes.button} onClick={this.showDookies}>Hide Dookies</Button>
                         <Dookies dog={this.state.dog} />
                     </div>
-                    ) : ( <Button variant='contained' className={classes.button} onClick={this.showDookies}>Show {this.state.dog.name}'s Dookies</Button> )}
+                    ) : ( null )}
                     <div className='vax-meds-columns'>
                         <div className='vaccine-table column'>
-                            <h3>Vaccines</h3>
                             {this.state.vaxButtonClicked ? (
                                 <div>
+                                    <h3>Vaccines</h3>
                                     <AddVaccine getVax={this.getVax} showVaxForm={this.showVaxForm} dog={this.state.dog}/>
                                     <Button size='small' variant='contained' className={classes.button} onClick={() => this.showVaxForm()}>Cancel</Button>
                                 </div>
