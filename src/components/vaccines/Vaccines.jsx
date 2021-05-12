@@ -3,7 +3,7 @@ import VaccineTable from './VaccineTable'
 
 function Vaccines(props) {
     
-    
+
     
     return (
         <div>

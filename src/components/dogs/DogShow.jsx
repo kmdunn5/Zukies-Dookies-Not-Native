@@ -8,10 +8,9 @@ import { withStyles } from '@material-ui/core/styles'
 
 import {baseUrl, api} from '../../baseUrl.js'
 import Dookies from '../dookies/Dookies'
-import MedicineTable from '../medicines/MedicineTable'
-import VaccineTable from '../vaccines/VaccineTable'
-import AddVaccine from '../vaccines/AddVaccine'
-import AddMedicine from '../medicines/AddMedicine'
+import Vaccines from '../vaccines/Vaccines'
+import Medicines from '../medicines/Medicines'
+import DogInfo from './DogInfo'
 
 import standing from '../../images/161454.jpeg'
 import noseOut from '../../images/IMG-9645.JPG'
@@ -54,9 +53,7 @@ class DogShow extends Component {
             mountDookies: false,
             mountMeds: false,
             mountVax: false,
-            vaxButtonClicked: false,
-            medsButtonClicked: false,
-            seeNotes: false,
+            mountInfo: false,
             vaccines: '',
             medicines: '',
             dogName: '',
@@ -64,20 +61,11 @@ class DogShow extends Component {
             dogBreed: '',
             dogImage: '',
             dogNotes: '',
-            vaxName: '',
-            vaxDate: '',
-            medName: '',
-            medRecentDate: '',
-            medfrequency: ''
         }
-        this.showVaxForm = this.showVaxForm.bind(this)
-        this.showVaxTable = this.showVaxTable.bind(this)
-        this.getVax = this.getVax.bind(this)
-        this.showMedsForm = this.showMedsForm.bind(this)
-        this.showMedsTable = this.showMedsTable.bind(this)
-        this.getMeds = this.getMeds.bind(this)
         this.showDookies = this.showDookies.bind(this)
-        this.showNotes = this.showNotes.bind(this)
+        this.showInfo = this.showInfo.bind(this)
+        this.showMeds = this.showMeds.bind(this)
+        this.showVax = this.showVax.bind(this)
     }
 
     componentDidMount() {
@@ -96,30 +84,28 @@ class DogShow extends Component {
                 dogImage: res.data.data.image,
                 dogNotes: res.data.data.notes,
             })
-            this.getVax()
-            this.getMeds()
         }})
     }
 
-    getVax() {
-        Axios.get(baseUrl + api + 'vaccines/' + this.props.match.params.dogId,
-            {withCredentials: true}
-        ).then(res => { if (res.data.status.code === 200) {
-            this.setState({
-                vaccines: res.data.data,
-            })
-        }})
-    }
+    // getVax() {
+    //     Axios.get(baseUrl + api + 'vaccines/' + this.props.match.params.dogId,
+    //         {withCredentials: true}
+    //     ).then(res => { if (res.data.status.code === 200) {
+    //         this.setState({
+    //             vaccines: res.data.data,
+    //         })
+    //     }})
+    // }
     
-    getMeds() {
-        Axios.get(baseUrl + api + 'medicines/' + this.props.match.params.dogId,
-            {withCredentials: true}
-        ).then(res => { if (res.data.status.code === 200) {
-            this.setState({
-                medicines: res.data.data,
-            })
-        }})
-    }
+    // getMeds() {
+    //     Axios.get(baseUrl + api + 'medicines/' + this.props.match.params.dogId,
+    //         {withCredentials: true}
+    //     ).then(res => { if (res.data.status.code === 200) {
+    //         this.setState({
+    //             medicines: res.data.data,
+    //         })
+    //     }})
+    // }
 
     handleChange(e) {
         this.setState({
@@ -143,58 +129,39 @@ class DogShow extends Component {
         }})
     }
 
-    showVaxForm() {
+    showVax() {
         this.setState({
-            vaxButtonClicked: !this.state.vaxButtonClicked,
-            mountVax: false,
+            mountVax: !this.state.mountVax,
             mountDookies: false,
             mountMeds: false,
-            medsButtonClicked: false,
-            seeNotes: false,
+            mountInfo: false,
         })
     }
 
-    showMedsForm() {
+    showMeds() {
         this.setState({
-            medsButtonClicked: !this.state.medsButtonClicked,
-            mountMeds: false,
+            mountMeds: !this.state.mountMeds,
             mountDookies: false,
             mountVax: false,
-            vaxButtonClicked: false,
-            seeNotes: false,
+            mountInfo: false,
         })
     }
 
     showDookies() {
         this.setState({
-            mountDookies: !this.state.mountDookies,
-            mountMeds: false,
+            mmountDookies: !this.state.mountDookies,
             mountVax: false,
-            vaxButtonClicked: false,
-            medsButtonClicked: false,
-            seeNotes: false,
+            mountMeds: false,
+            mountInfo: false,
         })
     }
 
-    showVaxTable() {
+    showInfo() {
         this.setState({
-            mountVax: !this.state.mountVax,
+            mountInfo: !this.state.mountInfo,
             mountDookies: false,
             mountMeds: false,
-            vaxButtonClicked: false,
-            medsButtonClicked: false,
-            seeNotes: false,
-        })
-    }
-
-    showMedsTable() {
-        this.setState({
-            mountMeds: !this.state.mountMeds,
-            mountDookies: false,
             mountVax: false,
-            vaxButtonClicked: false,
-            medsButtonClicked: false,
-            seeNotes: false,
         })
     }
 
@@ -210,12 +177,6 @@ class DogShow extends Component {
     //     Axios.delete(baseUrl + api + 'medicines/' + this.state.dog.id)
     // }
 
-    showNotes() {
-        this.setState({
-            seeNotes: !this.state.seeNotes
-        })
-    }
-
     render() {
         const { classes } = this.props
 
@@ -229,38 +190,35 @@ class DogShow extends Component {
                     <div className='dog-data'>
                         <h2>{this.state.dog.name}</h2>
                         <h4>{this.state.dog.breed}</h4>
-                        {this.state.seeNotes ? (
-                            <div className='notes'>
-                                <h4>{this.state.dog.notes}</h4>
-                                <Button variant='contained' className={classes.button} onClick={this.showNotes}>Hide Notes</Button>    
-                            </div>
-                        ) : (
-                            <Button variant='contained' className={classes.button} onClick={this.showNotes}>See Notes</Button>
-                        )}
-                        
                     </div>
                 </Container>
                 <Container className={classes.dogNav}>
                     <div className='dog-info'>
-                        <Button className={classes.navButton}>Info</Button>
+                        <Button className={classes.navButton} onClick={this.showInfo}>Info</Button>
                     </div>
                     <div className='vaccine-table'>
-                        <Button className={classes.navButton} onClick={this.showVaxTable}>Vaccines</Button>
+                        <Button className={classes.navButton} onClick={this.showVax}>Vaccines</Button>
                     </div>
                     <div className='medicine-table'>
-                        <Button className={classes.navButton} onClick={this.showMedsTable}>Medicines</Button>
+                        <Button className={classes.navButton} onClick={this.showMeds}>Medicines</Button>
                     </div>
                     <div className='dookie-table'>
                         <Button className={classes.navButton} onClick={this.showDookies}>Dookies</Button>
                     </div>
                 </Container>
                 <div className='medical content'>
+                    {this.state.mountInfo ? (<DogInfo/>) : (null)}
+
                     {this.state.mountDookies ? (
                     <div className='dookies-div'>
                         <Dookies dog={this.state.dog} />
                     </div>
                     ) : ( null )}
-                    <div className='vax-meds-columns'>
+
+                    {this.state.mountVax ? (<Vaccines />) : (null)}
+
+                    {this.state.mountMeds ? (<Medicines />) : (null)}
+                    {/* <div className='vax-meds-columns'>
                         <div className='vaccine-table column'>
                             {this.state.vaxButtonClicked ? (
                                 <div>
@@ -294,7 +252,7 @@ class DogShow extends Component {
                                 </div>
                             ) : ( <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showMedsTable}>Show Medicine Table</Button> )}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )
