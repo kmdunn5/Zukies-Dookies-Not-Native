@@ -7,7 +7,7 @@ import VaccineUpdate from './VaccineUpdate'
 
 const vaxColumns = [
     {
-        name: 'Name',
+        name: 'Vaccine',
         selector: 'vaccine_name',
         sortable: true
     },

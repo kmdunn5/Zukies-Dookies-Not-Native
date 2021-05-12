@@ -4,14 +4,14 @@ class UpdateDog extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dog = this.props.dog
+            dog: this.props.dog
         }
     }
 
     render() {
         return (
             <div>
-
+                <h1>Dog Update Time</h1>
             </div>
         )
     }

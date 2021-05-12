@@ -196,14 +196,14 @@ class DogShow extends Component {
                     <div className='dog-info'>
                         <Button className={classes.navButton} onClick={this.showInfo}>Info</Button>
                     </div>
+                    <div className='dookie-table'>
+                        <Button className={classes.navButton} onClick={this.showDookies}>Dookies</Button>
+                    </div>
                     <div className='vaccine-table'>
                         <Button className={classes.navButton} onClick={this.showVax}>Vaccines</Button>
                     </div>
                     <div className='medicine-table'>
                         <Button className={classes.navButton} onClick={this.showMeds}>Medicines</Button>
-                    </div>
-                    <div className='dookie-table'>
-                        <Button className={classes.navButton} onClick={this.showDookies}>Dookies</Button>
                     </div>
                 </Container>
                 <div className='medical content'>

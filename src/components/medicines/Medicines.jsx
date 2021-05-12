@@ -1,7 +1,7 @@
 import React from 'react'
 import MedicineTable from './MedicineTable'
 
-function Vaccines(props) {
+function Medicines(props) {
     
     
     
@@ -12,4 +12,4 @@ function Vaccines(props) {
     )
 }
 
-export default Vaccines
+export default Medicines

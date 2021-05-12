@@ -8,7 +8,7 @@ import MedicineUpdate from './MedicineUpdate'
 
 const medsColumns = [
     {
-        name: 'Name',
+        name: 'Medicine',
         selector: 'medicine_name',
         sortable: true
     },
