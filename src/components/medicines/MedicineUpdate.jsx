@@ -8,7 +8,8 @@ class MedicineUpdate extends Component {
         super(props)
         this.state = {
             medicine: this.props.medicine,
-            medicine_name: ''
+            medicine_name: '',
+            frequency: ''
         }
     }
 

@@ -214,41 +214,6 @@ class DogShow extends Component {
                     {this.state.mountVax ? (<Vaccines dog={this.state.dog} />) : (null)}
 
                     {this.state.mountMeds ? (<Medicines dog={this.state.dog} />) : (null)}
-                    {/* <div className='vax-meds-columns'>
-                        <div className='vaccine-table column'>
-                            {this.state.vaxButtonClicked ? (
-                                <div>
-                                    <h3>Vaccines</h3>
-                                    <AddVaccine getVax={this.getVax} showVaxForm={this.showVaxForm} dog={this.state.dog}/>
-                                    <Button size='small' variant='contained' className={classes.button} onClick={() => this.showVaxForm()}>Cancel</Button>
-                                </div>
-                            ) : (
-                                <Button size='small' variant='contained' className={classes.button} onClick={() => this.showVaxForm()}>Add A Vaccine</Button>)}
-                            {this.state.mountVax ? (
-                                <div>
-                                    <VaccineTable dog={this.state.dog} />
-                                    <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showVaxTable}>Hide Table</Button>
-                                </div>
-                            ) : ( <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showVaxTable}>Show Vaccine Table</Button> )}
-                        </div>
-                    
-                        <div className='meds-table column'>
-                            <h3>Medicines</h3>
-                            {this.state.medsButtonClicked ? (
-                                <div>
-                                    <AddMedicine getMeds={this.getMeds} showMedsForm={this.showMedsForm} dog={this.state.dog}/>
-                                    <Button size='small' variant='contained' className={classes.button} onClick={() => this.showMedsForm()}>Cancel</Button>
-                                </div>
-                            ) : (
-                                <Button size='small' variant='contained' className={classes.button} onClick={() => this.showMedsForm()}>Add A Medicine</Button>)}
-                            {this.state.mountMeds ? (
-                                <div>
-                                    <MedicineTable dog={this.state.dog}/>
-                                    <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showMedsTable}>Hide Table</Button>
-                                </div>
-                            ) : ( <Button size='small' variant='contained' className={classes.button} color='primary' onClick={this.showMedsTable}>Show Medicine Table</Button> )}
-                        </div>
-                    </div> */}
                 </div>
             </div>
         )
