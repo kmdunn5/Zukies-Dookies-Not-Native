@@ -7,7 +7,7 @@ function Vaccines(props) {
     
     return (
         <div>
-            <VaccineTable />
+            <VaccineTable dog={props.dog}/>
         </div>
     )
 }

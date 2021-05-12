@@ -1,5 +1,4 @@
 import React from 'react'
-import VaccineTable from './VaccineTable'
 
 function Vaccines(props) {
     
@@ -7,7 +6,7 @@ function Vaccines(props) {
     
     return (
         <div>
-            <VaccineTable />
+            <h1>Dog Info</h1>
         </div>
     )
 }

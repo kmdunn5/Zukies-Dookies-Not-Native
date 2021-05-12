@@ -149,7 +149,7 @@ class DogShow extends Component {
 
     showDookies() {
         this.setState({
-            mmountDookies: !this.state.mountDookies,
+            mountDookies: !this.state.mountDookies,
             mountVax: false,
             mountMeds: false,
             mountInfo: false,
@@ -207,17 +207,13 @@ class DogShow extends Component {
                     </div>
                 </Container>
                 <div className='medical content'>
-                    {this.state.mountInfo ? (<DogInfo/>) : (null)}
+                    {this.state.mountInfo ? (<DogInfo dog={this.state.dog} />) : (null)}
 
-                    {this.state.mountDookies ? (
-                    <div className='dookies-div'>
-                        <Dookies dog={this.state.dog} />
-                    </div>
-                    ) : ( null )}
+                    {this.state.mountDookies ? (<Dookies dog={this.state.dog} />) : ( null )}
 
-                    {this.state.mountVax ? (<Vaccines />) : (null)}
+                    {this.state.mountVax ? (<Vaccines dog={this.state.dog} />) : (null)}
 
-                    {this.state.mountMeds ? (<Medicines />) : (null)}
+                    {this.state.mountMeds ? (<Medicines dog={this.state.dog} />) : (null)}
                     {/* <div className='vax-meds-columns'>
                         <div className='vaccine-table column'>
                             {this.state.vaxButtonClicked ? (
