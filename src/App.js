@@ -24,6 +24,10 @@ class App extends Component{
     this.logOutUser = this.logOutUser.bind(this)
   }
 
+  componentDidMount() {
+    Axios.get(baseUrl + api + 'dogs/all')
+  }
+
   setUser() {
     Axios.get(baseUrl + api + 'caretakers/', 
       {withCredentials: true}
