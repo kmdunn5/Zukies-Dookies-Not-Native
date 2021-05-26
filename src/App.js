@@ -25,6 +25,8 @@ class App extends Component{
   }
 
   componentDidMount() {
+    console.log("Waking up backend")
+
     Axios.get(baseUrl + api + 'dogs/all')
   }
 
