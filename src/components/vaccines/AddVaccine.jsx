@@ -30,8 +30,7 @@ class AddVaccine extends Component {
         },
             {withCredentials: true}
         ).then(res => {if (res.data.status.code === 201) {
-            this.props.getVax()
-            this.props.showVaxForm()
+            this.props.setAdd(false)
             }
         })
     }

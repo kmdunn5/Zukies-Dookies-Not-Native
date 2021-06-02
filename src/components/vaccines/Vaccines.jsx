@@ -23,7 +23,7 @@ export default function Vaccines(props) {
         <div>
             <Button className={classes.button} variant='contained' onClick={() => {setAdd(!add)}}>{add ? (<span>Cancel</span>):(<span>New Vaccine</span>)}</Button>
             {add ? ( 
-                <AddVaccine dog={props.dog}/>    
+                <AddVaccine setAdd={setAdd} dog={props.dog}/>    
             ):(
                 <VaccineTable dog={props.dog}/> 
             )}
