@@ -17,6 +17,10 @@ body {
   text-align: center;
 }
 
+span {
+  color: var(--orange-web)
+}
+
 .main {
   min-height: 100vh;
   position: relative;
