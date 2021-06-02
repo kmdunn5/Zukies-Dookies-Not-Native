@@ -32,8 +32,7 @@ class AddMedicine extends Component {
         },
             {withCredentials: true}
         ).then(res => {if (res.data.status.code === 201) {
-            this.props.getMeds()
-            this.props.showMedsForm()
+            this.props.setAdd(false)
             }
         })
     }

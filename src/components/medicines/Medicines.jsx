@@ -23,7 +23,7 @@ export default function Medicines(props) {
         <div>
             <Button className={classes.button} variant='contained' onClick={() => {setAdd(!add)}}>{add ? (<span>Cancel</span>):(<span>New Medicine</span>)}</Button>
             {add ? ( 
-                <AddMedicine dog={props.dog}/>    
+                <AddMedicine setAdd={setAdd} dog={props.dog}/>    
             ):(
                 <MedicineTable dog={props.dog}/> 
             )}
