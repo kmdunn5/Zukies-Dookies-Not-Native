@@ -11,7 +11,7 @@ class UpdateDog extends Component {
     render() {
         return (
             <div>
-                <h1>Dog Update Time</h1>
+                <h1>Dog Update (under construction)</h1>
             </div>
         )
     }
