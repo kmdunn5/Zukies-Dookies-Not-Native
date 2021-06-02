@@ -17,10 +17,6 @@ body {
   text-align: center;
 }
 
-span {
-  color: var(--orange-web)
-}
-
 .main {
   min-height: 100vh;
   position: relative;
@@ -88,6 +84,10 @@ a {
 
 .user-home {
   width: fit-content;
+}
+
+.example {
+  color: var(--orange-web)
 }
 
 .login-info {

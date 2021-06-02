@@ -22,7 +22,7 @@ class Home extends Component {
         return (
             <div>
                 <h1 className='title'>Welcome to Zookies Dookies!</h1>
-                <h2>Use username: <span>example</span> and password: <span>password</span> to test the app out!</h2>
+                <h2>Use username: <span className="example">example</span> and password: <span className="example">password</span> to test the app out!</h2>
                 <div className='description'>
                     <p className='description description1'>Here, you can keep track of some of the medical needs of your dog friend or friends. This site was created because my partner and I are both new to being dog parents. Not knowing much about pet care, we decided that the best thing we could do to prepare ourselves was to make sure we documented the things that we found were important! We found that some of the most important things to know was your dogs' vaccines, medicines, and, gross or not, the poops! Our new dog-son's name is Zuko, so we created Zookies Dookies! </p>
                     <p>When using Zookies Dookies, you, yes you, will be able to add all of the dogs you care for. For each of those dogs, you will be able to add all of the vaccines that your dog has been given and when. You'll also be able to record all of the medicines that your vet tells you your dog friend will need to take regularly. And when you add those, you can keep track of how often these medicines need to be taken, too!</p>
